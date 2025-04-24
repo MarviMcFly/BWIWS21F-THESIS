@@ -1,0 +1,50 @@
+.DS_Store
+# LaTeX auxiliary files
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+*.idx
+*.glo
+*.ilg
+*.ind
+*.bbl
+*.bcf
+*.blg
+*.run.xml
+*.fdb_latexmk
+*.synctex.gz
+
+# Biber / BibLaTeX
+*.bbl
+*.bcf
+*.blg
+
+# Glossaries
+*.glg
+*.glo
+*.gls
+*.ist
+*.acn
+*.acr
+*.alg
+
+# Output files
+*.pdf
+*.dvi
+*.ps
+
+# Editor and build system files
+*~
+*.swp
+*.bak
+*.tmp
+.vscode/
+build/

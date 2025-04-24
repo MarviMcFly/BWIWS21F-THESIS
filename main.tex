@@ -1,0 +1,41 @@
+\documentclass[11pt,a4paper]{article}   % 11pt Schrift, A4-Format, Artikelklasse
+\usepackage[
+    left=4cm, 
+    right=2cm, 
+    top=2cm, 
+    bottom=4cm
+]{geometry}                             % Seitenränder
+
+%:: Eigenschaften des Dokuments
+\usepackage[utf8]{inputenc}             % Eingabecodierung UTF-8 (für Umlaute etc.)
+\usepackage[scaled]{helvet}             % Serifenlose Schrift Helvetica, skaliert
+\usepackage[T1]{fontenc}                % Korrekte Zeichencodierung für Trennung & Sonderzeichen
+\usepackage[german]{babel}              % Deutsche Sprache, Trennung, Datum etc.
+
+%:: Inhalt & Darstellung
+\usepackage{enumitem}                   % Anpassung von Aufzählungen
+\usepackage{amsmath}                    % Erweiterte Mathematik-Umgebungen
+\usepackage{amssymb}                    % Mathematische Symbole (ℝ, ⊕, etc.)
+\usepackage{graphicx}                   % Einfügen und Skalieren von Bildern
+
+%:: Wissenschaftlicher Apparat
+\usepackage{hyperref}                   % Hyperlinks für Referenzen, Inhaltsverzeichnis, etc.
+\usepackage[
+    style=long,
+    nonumberlist,
+    toc,
+    acronym
+]{glossaries}                           % Glossar- und Abkürzungsverzeichnis
+
+\usepackage[
+	backend=biber,
+	style=authoryear
+]{biblatex}                             % Literaturverwaltung mit Biber und Autor-Jahr-Stil
+
+%:: Präambel
+
+\bibliography{bibliography.bib}
+
+\begin{document}
+    test
+\end{document}
