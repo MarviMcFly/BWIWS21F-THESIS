@@ -29,24 +29,30 @@ jobs:
           FILE=$(ls build/${{ env.timestamp }}_*.pdf | head -n 1)
           echo "pdf_file=$FILE" >> $GITHUB_ENV
 
-      - name: Get latest commit message for release body
+      - name: 📋 Get latest commit message (safe Base64 version)
         id: commitmsg
         run: |
-          msg=$(git log -1 --pretty=%B)
-          echo "commit_message=$msg" >> $GITHUB_ENV
-          if echo "$msg" | grep -q "#release"; then
+          raw_msg=$(git log -1 --pretty=%B)
+          encoded_msg=$(echo "$raw_msg" | base64 -w 0)
+          echo "commit_message_b64=$encoded_msg" >> $GITHUB_ENV
+          if echo "$raw_msg" | grep -q "#release"; then
             echo "should_release=true" >> $GITHUB_ENV
           else
             echo "should_release=false" >> $GITHUB_ENV
           fi
 
-      - name: 🚀 Create GitHub Release (only if \#release is in commit)
+      - name: Decode Commit Message for Release
+        id: decode_commit
+        run: |
+          echo "decoded_message=$(echo "${{ env.commit_message_b64 }}" | base64 -d)" >> $GITHUB_OUTPUT
+
+      - name: Create GitHub Release (only if \#release is in commit)
         if: env.should_release == 'true'
         uses: softprops/action-gh-release@v2
         with:
           name: "${{ env.timestamp }}"
           tag_name: "build-${{ env.timestamp }}"
-          body: "${{ env.commit_message }}"
+          body: ${{ steps.decode_commit.outputs.decoded_message }}
           prerelease: true
           files: ${{ env.pdf_file }}
         env:
