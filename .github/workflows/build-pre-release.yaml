@@ -33,22 +33,19 @@ jobs:
         id: commitmsg
         run: |
           raw_msg=$(git log -1 --pretty=%B)
-          encoded_msg=$(echo "$raw_msg" | base64 -w 0)
-          echo "commit_message_b64=$encoded_msg" >> $GITHUB_ENV
+          echo "$raw_msg" > message.txt
+          echo "should_release=false" >> $GITHUB_ENV
           if echo "$raw_msg" | grep -q "#release"; then
             echo "should_release=true" >> $GITHUB_ENV
-          else
-            echo "should_release=false" >> $GITHUB_ENV
           fi
           
-      - name: Create GitHub Release (only if \#release is in commit)
+      - name: Create GitHub Release
         if: env.should_release == 'true'
         uses: softprops/action-gh-release@v2
         with:
           name: "${{ env.timestamp }}"
           tag_name: "build-${{ env.timestamp }}"
-          body: |
-            ${{ fromJson('["' + env.commit_message_b64 + '"]')[0] | base64Decode() }}
+          body_path: message.txt
           prerelease: true
           files: ${{ env.pdf_file }}
         env:
