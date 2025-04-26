@@ -1,5 +1,5 @@
 # Bachelor Wirtschaftsinformatik - Thesis
-Dieses Repository beinhaltet alle Daten hinsichtlich meiner Bachelorarbeit
+Dieses Repository beinhaltet alle Daten hinsichtlich meiner Bachelorarbeit.
 
 ## Usage
 ### Projekt kompilieren
@@ -8,8 +8,14 @@ Projekt inkl. Glossar und Bibliography kompilieren.
 make build
 ```
 
+### PDF Datei neu erzeugen kompilieren
+Kompiliert das Projekt ohne Glossar und Bibliography
+```
+make quick
+```
+
 ### Veröffentlichbare Version erstellen
-Release Version des Projektes erstellen inkl. vorhergehender Bereinigung der Laufzeitdateien.
+Release Version des Projektes erstellen inkl. vorhergehender Bereinigung der Laufzeitdateien. Ein Symlink `$(TEX).pdf` auf die zuletzt erstellte Build Version wird erzeugt.
 ```
 make release
 ```
@@ -24,12 +30,6 @@ make clean
 Entfernen aller Laufzeitdateien inkl. der Bereits kompilierten Versionen.
 ```
 make cleanall
-```
-
-### Verzeichnis zurücksetzen
-Bereinigt das Verzeichnis vollständig und entfernt zusätzlich den Build- und Release Zähler.
-```
-make reset
 ```
 
 ## Commit Nachricht (Vorlage)

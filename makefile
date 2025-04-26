@@ -3,19 +3,14 @@ TEX = main
 TIMESTAMP = $(shell date +%Y%m%d-%H%M%S)
 
 BUILDDIR = build
-
-RELEASE_FILE = .release.version
-BUILD_FILE = .build.version
+TIMESTAMP = .timestamp
 
 prepare:
 	@mkdir -p $(BUILDDIR)
-	@touch $(RELEASE_FILE)
-	@touch $(BUILD_FILE)
+	@timestamp=$$(date +%Y%m%d-%H%M%S); \
+	echo $$timestamp > $(TIMESTAMP); \
 
 build: prepare
-	version=$$(cat $(BUILD_FILE) 2>/dev/null || echo 0); \
-	version=$$((10#$${version} + 1)); \
-	printf "%03d" $$version > $(BUILD_FILE);
 	pdflatex -synctex=1 -interaction=nonstopmode -output-directory=./ $(TEX).tex
 	
 	@if [ -f "$(TEX).acn" ] || [ -f "$(TEX).glo" ]; then \
@@ -28,23 +23,16 @@ build: prepare
 	
 	pdflatex -synctex=1 -interaction=nonstopmode -output-directory=./ $(TEX).tex
 
-	@version=$$(cat $(BUILD_FILE) 2>/dev/null || echo 0); \
-	cp -f $(TEX).pdf $(BUILDDIR)/b$$version\_$(TEX).pdf
+	@timestamp=$$(cat .timestamp); \
+	cp -f $(TEX).pdf $(BUILDDIR)/$${timestamp}_$(TEX).pdf
 
 release: clean build
-	version=$$(cat $(RELEASE_FILE) 2>/dev/null || echo 0); \
-	version=$$((10#$${version} + 1)); \
-	printf "%03d" $$version > $(RELEASE_FILE);
-	cp -f $(TEX).pdf $(BUILDDIR)/r$version\_$(TEX).pdf
+	@timestamp=$$(cat .timestamp); \
+	ln -sf $(BUILDDIR)/$${timestamp}_$(TEX).pdf $(BUILDDIR)/$(TEX).pdf
 
-quick: prepare $(TEX).tex
-	version=$$(cat $(BUILD_FILE) 2>/dev/null || echo 0); \
-	version=$$((10#$${version} + 1)); \
-	printf "%03d" $$version > $(BUILD_FILE);
+quick: clean prepare $(TEX).tex
 	pdflatex -synctex=1 -interaction=nonstopmode -output-directory=./ $(TEX).tex
-
-	@version=$$(cat $(BUILD_FILE) 2>/dev/null || echo 0); \
-	cp -f $(TEX).pdf $(BUILDDIR)/b$$version\_$(TEX).pdf
+	cp -f $(TEX).pdf $(BUILDDIR)/$(TIMESTAMP)\_$(TEX).pdf
 
 clean:
 	@rm -f $(TEX).{aux,log,toc,out,bbl,bcf,blg,acn,acr,alg,glg,glo,gls,ilg,ist,lof,lot,run.xml,synctex.gz}
@@ -53,9 +41,6 @@ clean:
 cleanall: clean
 	@rm -f $(TEX).pdf
 	@rm -rf $(BUILDDIR)
+	@rm -rf $(TIMESTAMP)
 
-reset: cleanall
-	@rm -f $(RELEASE_FILE)
-	@rm -f $(BUILD_FILE)
-
-.PHONY: prepare build release clean cleanall cleancounter quick
+.PHONY: prepare build release clean cleanall quick
