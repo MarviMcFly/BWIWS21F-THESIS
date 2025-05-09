@@ -35,10 +35,18 @@
 %:: Präambel
 
 \bibliography{bibliography.bib}
+\input{./titlepage.tex} 
+
 
 \begin{document}
+    \maketitle{Marvin Künzel}{Informationssicherheit in deutschen Unternehmen – Anforderungen und Umsetzungsoptionen im Kontext des KRITIS-Dachgesetz und des NIS2-Umsetzungsgesetz}{Oliver Bach M.Sc.}{587486}{01-01-1970}
     \tableofcontents
-    \newpage
     %:: Abschnitt: Einleitung
+    \newpage
     \section{Einleitung}
+
+    %:: Abschnitt: Literatur
+    \newpage
+    \nocite{*}
+    \printbibliography
 \end{document}

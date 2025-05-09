@@ -1,0 +1,52 @@
+\usepackage{geometry}
+
+\renewcommand{\maketitle}[5]{
+	\begin{titlepage}
+		\newgeometry{left=4cm, right=2cm, top=2cm, bottom=2cm}
+		\begin{center}
+			\begin{center}
+				\includegraphics[width=0.5\linewidth]{logo.png}
+			\end{center}
+			\vspace{.5cm}
+			\begin{Large}
+				\textbf{FOM Hochschule für Oekonomie \& Management}
+				\begin{small}
+					\\ Hochschulzentrum Frankfurt am Main
+				\end{small}
+			\end{Large} \\
+			\vspace{1.5cm}
+			\begin{large}
+				\textbf{Bachelor-Thesis} \\
+				\begin{small}
+					im Studiengang Wirtschaftsinformatik
+				\end{small}
+			\end{large} \\
+			\vspace{1.0cm}
+			\begin{small}
+				zur Erlangung des Grades eines \\
+				\vspace{.15cm}
+				\begin{Large}
+					Bachelor of Science (B.Sc.)
+				\end{Large}
+			\end{small} \\
+			\vspace{1.0cm}
+			\begin{small}
+				über das Thema \\
+				\vspace{.15cm}
+				\begin{large}
+					\textbf{#2}
+				\end{large}
+			\end{small} \\
+			\vspace{1.0cm}
+			von \\
+			#1
+		\end{center}
+		\vspace*{\fill}
+		\begin{tabular}{l @{ : } l}
+			Erstgutachter & #3 \\
+			Matrikelnummer & #4 \\
+			Abgabedatum & #5 \\
+		\end{tabular}
+		\restoregeometry
+	\end{titlepage}	
+}
