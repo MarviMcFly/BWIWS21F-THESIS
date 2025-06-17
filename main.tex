@@ -2,8 +2,8 @@
 \usepackage[
     left=4cm, 
     right=2cm, 
-    top=2cm, 
-    bottom=4cm
+    top=2.5cm, 
+    bottom=2.5cm
 ]{geometry}                             % Seitenränder
 
 %:: Eigenschaften des Dokuments
@@ -17,6 +17,8 @@
 \usepackage{amsmath}                    % Erweiterte Mathematik-Umgebungen
 \usepackage{amssymb}                    % Mathematische Symbole (ℝ, ⊕, etc.)
 \usepackage{graphicx}                   % Einfügen und Skalieren von Bildern
+\usepackage{fancyhdr}                   % Benutzerdefinierte Kopf- und Fußzeilen
+\usepackage{tablefootnote}
 
 %:: Wissenschaftlicher Apparat
 \usepackage{hyperref}                   % Hyperlinks für Referenzen, Inhaltsverzeichnis, etc.
@@ -34,19 +36,145 @@
 
 %:: Präambel
 
+\pagestyle{fancy}
+\lhead{\nouppercase\leftmark}
+\chead{ }
+\rhead{\thepage}
+\cfoot{ }
+
+\renewcommand{\familydefault}{\sfdefault}
+
+
 \bibliography{bibliography.bib}
+\loadglsentries{./glossarie.tex} % Einbinden des Glossars fuer Akronyme
 \input{./titlepage.tex} 
 
+\makeglossaries
 
 \begin{document}
-    \maketitle{Marvin Künzel}{Informationssicherheit in deutschen Unternehmen – Anforderungen und Umsetzungsoptionen im Kontext des KRITIS-Dachgesetz und des NIS2-Umsetzungsgesetz}{Oliver Bach M.Sc.}{587486}{01-01-1970}
+    \maketitle{Marvin Künzel}{Informationssicherheit in deutschen Unternehmen – Anforderungen und Umsetzungsoptionen im Kontext des KRITIS-Dachgesetzes und NIS2-Umsetzungsgesetzes}{Oliver Bach M.Sc.}{587486}{01-01-1970}
+    \pagenumbering{roman}
+    \addtocounter{table}{-1}    % TODO: Dokumentieren
+    \clearpage
+
+    %:: Abschnitt: Verzeichnisse
+    \newpage
     \tableofcontents
+        % \addcontentsline{toc}{section}{Abbildungsverzeichnis}
+	    % \listoffigures
+	\newpage
+    \addcontentsline{toc}{section}{Tabellenverzeichnis}
+	\listoftables
+	    % \newpage
+	    % \addcontentsline{toc}{section}{Abkürzungsverzeichnis}
+	    % \printglossary
+	\newpage
+    \printglossary[type=\acronymtype, title=Abkürzungsverzeichnis, toctitle=Abkürzungsverzeichnis]
+
     %:: Abschnitt: Einleitung
     \newpage
+    \pagenumbering{arabic}
     \section{Einleitung}
+    Im folgenden Kapitel sollen zunächst die Beweggründe für diese Arbeit widergespiegelt werden. Anschließend erfolgt eine Einordnung auf welchen Rahmen sich diese Arbeit bezieht um darauf folgend auf die spezifische Zielsetzung einzugehen. Abschließend wird der generelle Aufbau dieser Arbeit umrissen um die einzelnen Kapitel grob zusammenzufassen.
+    \subsection{Motivation}\label{sec:Einleitung_Motivation}
+        Der zunehmende Fachkräftemangel erschwert es \gls{kmu} angemessene Maßnahmen zur physischen Resilienz sowie der Informationssicherheit zu treffen. Mit den Richtlinien 2022/2555 und 2022/2557 verpflichtet die \gls{eu} Ihre Mitgliedstaaten auf nationaler Ebenen Gesetze zu erlassen, welche wiederum Unternehmen verpflichtet entsprechende Maßnahmen zu ergreifen. Sowohl kritische Einrichtungen sowie dessen Zulieferer sind somit verpflichtet neue Mindeststandards einzuhalten und zu implementieren. Zwar wurden die Richtlinien auf nationaler Ebene noch nicht vollständig in geltendes Recht überführt, mit dem \gls{nis2umsucg} sowie dem \gls{kritis-dachg} liegen jedoch konkrete Gesetzesentwürfe vor.
+        
+        Das stellt \gls{kmu} vor eine Herausforderung, da diese mit weniger Personellen und Finanziellen Ressourcen teilweise dieselben regulatorischen Anforderungen unterliegen, wie große Unternehmen. Dies verdeutlicht die Notwendigkeit von praxisnahen Empfehlungen wie diese regulatorischen Anforderungen umzusetzen sind, um \gls{kmu} entsprechend zu entlasten und deren Rechtskonformität und Wettbewerbsfähigkeit zu gewährleisten.
+    \subsection{Abgrenzung}
+        Wie bereits zuvor in Abschnitt \ref{sec:Einleitung_Motivation} erwähnt setzt diese Arbeit \gls{kmu} in den Fokus. Mit mehr als 50\% der Unternehmen in Deutschland ist dies die größte Gruppe hinsichtlich betroffener Unternehmen. In Tabelle \ref{tbl:definition-kmu} sind die entsprechenden Vorraussetzungen für die Klassifikation eines Unternehmens beschrieben. 
+        \begin{table}[ht]
+            \caption[Definition von kleinen und mittleren Unternehmen]{Definition von kleinen und mittleren Unternehmen\footnotemark}
+            \label{tbl:definition-kmu}
+            \resizebox{\textwidth}{!}{
+                \begin{tabular}{llll}
+                \hline
+                Unternehmen & Anzahl Beschäftigte & Umsatz Mio. Euro pro Jahr & Bilanzsumme Mio. Euro pro Jahr \\ 
+                \hline
+                kleinst     & \(\leq\) 9            & \(\leq\) 2                  & \(\leq\) 2                       \\
+                klein       & \(\leq\) 49           & \(\leq\) 10                 & \(\leq\) 10                      \\
+                mittel      & \(\leq\) 249          & \(\leq\) 50                 & \(\leq\) 43                      \\ 
+                \hline
+                \end{tabular}
+            }
+        \end{table}\footnotetext{\footcite[Vgl.][Anhang, Titel 1, Artikel 2]{l124-36}} \\
+        Hierbei stehen die Parameter nicht ausschließlich in einer logischen \(UND\) Beziehung zueinander, sondern sind vielmehr wie folgt zu Interpretieren.
+        \[
+            Besch"aftigte \land \large( Umsatz} \oplus Bilanzsumme \large)
+        \]
+        Das Ergebnis richtet sich somit ausschließlich an Unternehmen, die weniger als 250 Beschäftigte haben und entweder eine Bilanzsumme von unter 43 Millionen Euro oder einen Jahresumsatz von unter 50 Millionen Euro aufweisen.
+    \subsection{Zielsetzung}
+        \emph{Ergebnis der Arbeit soll ein Fragenkatalog mit Handlungsempfehlungen (Musterantworten) sein. Diesen sollen Unternehmen verwenden können um zum einen Ihre aktuelle Stellung einschätzen zu können. Ebenfalls sollen die Musterantworten den Unternehmen helfen existierende Lücken schneller zu schließen.}
+    \subsection{Aufbau der Arbeit}
+        \emph{Der Aufbau der Arbeit soll kurz beschrieben werden, sodass der Leser den Umriss der einzelnen Kapitel aber auch den Umfang ein- und abschätzen kann.}
+
+
+    %:: Abschnitt: Methodisches Vorgehen
+    \newpage
+    \section{Methodisches Vorgehen}
+        \emph{Kurze Zusammenfassung des Kapitel}
+        \subsection{Systematische Literaturrecherche}
+            \emph{Was ist die systematische Literaturrecherche?}
+            \subsubsection{Vorgehen und Auswahlkriterien}
+                \emph{Beschreibung des Ausgangspunktes und der daraus folgenden Suche weiterer Literatur. Im Fokus soll stehen wo gesucht wurde (Suchmaschinen, Organisationen etc.), warum dort gesucht wurde (Kontext hinsichtlich der Relevanz) und wie dort gesucht wurde (Abstrakte Beschreibung der relevanten Schlüsselworte, welche sich aus den Richtlinien implizit oder Explizit ergeben.)}
+            \subsubsection{Herleitung des Fragenkatalogs}
+                \emph{Beschreibung der Struktur des Fragenkatalogs (Basis sind die Richtlinien) sowie die Ableitung / Definition der genauen Fragen.}
+        \subsection{Deduktiver Erkenntnisweg}
+            \emph{Beschreiben was der deduktive Erkenntnisweg ist und warum dieser für die Ausgangslage der Arbeit relevant ist. Zusätzlich kann hier Bezug auf die hermeneutische Komponente genommen werden.}
+        \subsection{Induktive Verifikation}
+            \emph{Beschreiben was in dem Kontext der Arbeit die induktiv empirische Verifikation ist und warum diese erforderlich ist. Hier kann ein Bezug auf die interpretation von Gesetzen genommen werden (subjektives Verständnis) und inwieweit die Verifikation des Ergebnis eine Validierung ist.}
+            \subsubsection{Fallstudie}
+                \emph{Beschreibung was eine Fallstudie ist und was genau sowie in welcher Form dies im Rahmen der Arbeit Anwendung findet.}
+
+    
+    %:: Abschnitt: Theoretischer Rahmen
+    \newpage
+    \section{Theoretischer Rahmen}
+        \emph{Einleitend in den theoretischen Rahmen soll die Forschungsfrage hinführend beschrieben werden. Somit ist der Kontext sowie der Rahmen dieser Arbeit gesteckt.}
+        \subsection{Aktueller Forschungsstand}
+            \emph{Die Richtlinien sind jeweils in noch kein national gültiges Recht überführt worden und gelten nur als Entwürfe. Demnach kann und gibt es noch keine konkret gültigen Publikationen. Abseits davon wurde sich bereits auf verschiedenen Ebenen mit dem Thema beschäftigt (Referenz zu relevanten Werken oder Organisationen (wie OPEN KRITIS)) und auch viele Aspekte sind in lange existierenden Standards (Referenz auf relevante Standards wie ISO27001, etc.) Aufgefasst. Konkrete Handlungsempfehlungen in der Form gibt es noch nicht ($\leftarrow$ diese Aussage muss geprüft werden.)}
+        \subsection{Anforderungen der Europäischen Union}
+            \emph{Hinleitung an die für die Arbeit relevanten Richtlinien und Anforderungen, welche aus der Mitgliedschaft hervorgehen.}
+            \subsubsection{Vertrag über die Arbeitsweise der Europäischen Union (Konsolidierte Fassung)}
+                \emph{Herleitung des Systems der Richtlinien, welche die Europäische Union erlässt sowie mögliche Sanktionen wenn diese nicht eingehalten werden. Daraus ergibt sich der Kontext warum schnellstmöglich fertige nationale Rechtssprechungen erforderlich sein werden.}
+            \subsubsection{Richtlinie (EU) 2022/2555}
+                \emph{Herleitung seit wann die Richtlinie besteht sowie der Zeitpunkt seit dem diese als nationales Recht umgesetzt sein müsste. Ebenfalls Bezug auf das nationale Recht bzw. den Gesetzesentwurf zu NIS2 und den Hauptfokus (Informationssicherheit) dieser Richtlinie.}
+            \subsubsection{Richtlinie (EU) 2022/2557}
+            \emph{Herleitung seit wann die Richtlinie besteht sowie der Zeitpunkt seit dem diese als nationales Recht umgesetzt sein müsste. Ebenfalls Bezug auf das nationale Recht bzw. den Gesetzesentwurf zu KRITIS und den Hauptfokus (physische Resilienz) dieser Richtlinie.}            
+        \subsection{Nationale Umsetzungsentwürfe}
+            \emph{Bezug zu den Anforderungen aus der Europäischen Union und in welche Entwürfe die Richtlinien umgesetzt wurden.}
+            \subsubsection{NIS-2-Umsetzungs- und Cybersicherheitsstärkungsgesetz}
+                \emph{Umriss der für diese Arbeit wichtigen Aspekte wie beispielsweise betroffene Unternehmen aber auch der Gesamtkontext des Rechtes in der Wirtschaft und welche Kernaspekte es umfasst.}
+            \subsubsection{KRITIS-Dachgesetz}
+            \emph{Umriss der für diese Arbeit wichtigen Aspekte wie beispielsweise betroffene Unternehmen aber auch der Gesamtkontext des Rechtes in der Wirtschaft und welche Kernaspekte es umfasst.}
+        \subsection{Organisationsstrukturen}
+            \emph{In adäquaten Unterabschnitten sollen relevante und für die Arbeit nützliche Organisationsstrukturen näher erläutert werden. Hierbei soll der Fokus unter anderem darauf liegen wie man die Leistung von Mitarbeitern bewerten kann, wenn diese im Rahmen der Informationssicherheit zusätzliche Aufgaben wahrnehmen, welche nicht unmittelbar Ihrer Haupttätigkeit entsprechen.}
+        \subsection{Geschäftsprozessmodellierung}
+            \emph{In adäquaten Unterabschnitten sollen relevante Aspekte der Geschäftsprozessmodellierung beschrieben werden. Hierbei soll ein Fokus auf die BPMN2.0 gelegt werden, da diese Prozesse sehr spezifisch beschreiben kann und direkt oder indirekt in Business Process Engine verwendet werden können.}
+        \subsection{Technische Konzepte}
+            \emph{In adäquaten Unterabschnitten sollen relevante Aspekte technischer Konzepte näher erläutert werden. Essenzielle Systeme, wie beispielsweise ein Information Security Management System (ISMS), sollen entsprechend beschrieben werden. Weitere technische Maßnahmen (Netzwerksegmentierung, Einbruchserkennung (IDS), Endpoint Management, Patch Management, uvm.) sollen hier ebenfalls beschrieben werden, sofern hinreichend für das Ergebnis der Arbeit. Dies soll an die Geschäftsprozesse anknüpfen, da Dokumentation sowohl organisatorisch (manuell) oder auch technisch (automatisch) sowie hybrid sein kann.}
+
+    %:: Abschnitt: Herleitung des Fragenkatalogs
+    \newpage
+    \section{Herleitung des Fragenkatalogs}
+        \emph{In diesem Kapitel wird mit adäquaten Unterabschnitten, welche sich im Rahmen der Recherche ergeben werden, der Fragenkatalog an sich und dessen Herleitung, auf Basis der diversen Werke, beschrieben}
+
+    %:: Abschnitt: Rahmen und Ergebnis der Fallstudie
+    \newpage
+    \section{Rahmen und Ergebnis der Fallstudie}
+        \emph{Hierbei wir beschrieben in welchem Umfeld die Fallstudie durchgeführt wird, sowie dessen Ergebnis analysiert. Das genaue Ergebnis befindet sich dann im Anhang.}
+
+    %:: Abschnitt: Schlussbetrachtung
+    \newpage
+    \section{Schlussbetrachtung}
+        \emph{Die Schlussbetrachtung soll alle abschließend wichtigen Punkte aufgreifen.}
+        \subsection{Limitation}
+        \emph{Im Rahmen der Limitation soll eingegrenzt werden was die Arbeit Limitiert hat. Unter anderem ist das Ergebnis auf den IST Stand der aktuellen Gesetzesentwürfe beschränkt.}
+        \subsection{Ausblick}
+        \emph{Aus der Arbeit können sich weitere Forschungsfragen ergeben. Nicht zuletzt der weitere Forschungsbedarf bzw. die erneute Validierung wenn aus den Entwürfen beschlossene Gesetze geworden sind.}
+        \subsection{Fazit}
+        \emph{Abschließend soll im Rahmen der Arbeit noch ein selbstkritisches Fazit gezogen werden.}
 
     %:: Abschnitt: Literatur
     \newpage
-    \nocite{*}
     \printbibliography
 \end{document}

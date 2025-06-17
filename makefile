@@ -35,7 +35,8 @@ quick: clean prepare $(TEX).tex
 	cp -f $(TEX).pdf $(BUILDDIR)/$(TIMESTAMP)\_$(TEX).pdf
 
 clean:
-	@rm -f $(TEX).{aux,log,toc,out,bbl,bcf,blg,acn,acr,alg,glg,glo,gls,ilg,ist,lof,lot,run.xml,synctex.gz}
+	@rm -f $(TEX).{aux,log,toc,out,bbl,bcf,blg,acn,acr,alg,glg,glo,gls,ilg,ist,lof,lot,log,run.xml,synctex.gz,tex.bbl,tex.blg,fls,fdb_latexmk,timestamp}
+	@rm -f .timestamp
 	@rm -f $(TEX).pdf
 
 cleanall: clean

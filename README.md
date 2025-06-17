@@ -178,6 +178,40 @@ Alle Anleitungen (On- oder Offline), wie bspw. [Microsoft](learn.microsoft.com) 
   - ⛶ GitHub Pipeline erstellen
   - biber Definitionen in einer eigenen Datei
 
+## Umgebungen
+### Tabellen
+  - `\caption[<list entry>]{<heading>}`: `list entry` ist der Text für das Tabellenverzeichnis und `<heading>` die eigentliche Überschrift 
+```latex
+\begin{table}[ht!]
+  \caption[Kurzer Titel]{Langer Titel\footnotemark}
+  \label{tbl:label}
+  \resizebox{\textwidth}{!}{
+    \begin{tabular}{llll}
+      \hline
+      Header 1 & Header 2 & Header 3 & Header 4 \\
+      Zeile  1 & Zeile  1 & Zeile  1 & Zeile  1 \\  
+      \hline 
+      \end{tabular}
+    }
+\end{table}\footnotetext{Fußnote^}
+```
+
+### Mathematische Umgebungen
+#### Innerhalb der Zeile (inline)
+```latex
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed \(<Math goes here>\) diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
+```
+
+#### Abgesetzt (display)
+```latex
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
+\[ 
+  <Math goes here>
+\]
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
+```
+
+
 ### Notizen
 ```
 \DeclareLabeldate{\field{date}\field{eventdate} \field{origdate}\literal{nodate}} % <-- def für was als Datum genutzt werden soll
