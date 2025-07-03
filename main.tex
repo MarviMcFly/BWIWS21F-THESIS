@@ -22,12 +22,8 @@
 
 %:: Wissenschaftlicher Apparat
 \usepackage{hyperref}                   % Hyperlinks für Referenzen, Inhaltsverzeichnis, etc.
-\usepackage[
-    style=long,
-    nonumberlist,
-    toc,
-    acronym
-]{glossaries}                           % Glossar- und Abkürzungsverzeichnis
+\usepackage[toc,acronym,nomain]{glossaries}
+                         % Glossar- und Abkürzungsverzeichnis
 
 \usepackage[
 	backend=biber,
@@ -46,7 +42,8 @@
 
 
 \bibliography{bibliography.bib}
-\loadglsentries{./glossarie.tex} % Einbinden des Glossars fuer Akronyme
+\loadglsentries{./acronyms.tex} % Einbinden des Glossars fuer Akronyme
+% \loadglsentries{./glossarie.tex}
 \input{./titlepage.tex} 
 
 \makeglossaries
@@ -54,7 +51,7 @@
 \begin{document}
     \maketitle{Marvin Künzel}{Informationssicherheit in deutschen Unternehmen – Anforderungen und Umsetzungsoptionen im Kontext des KRITIS-Dachgesetzes und NIS2-Umsetzungsgesetzes}{Oliver Bach M.Sc.}{587486}{01-01-1970}
     \pagenumbering{roman}
-    \addtocounter{table}{-1}    % TODO: Dokumentieren
+    % \addtocounter{table}{-1}    % TODO: Dokumentieren
     \clearpage
 
     %:: Abschnitt: Verzeichnisse
@@ -65,7 +62,7 @@
 	\newpage
     \addcontentsline{toc}{section}{Tabellenverzeichnis}
 	\listoftables
-	    % \newpage
+	    %\newpage
 	    % \addcontentsline{toc}{section}{Abkürzungsverzeichnis}
 	    % \printglossary
 	\newpage
@@ -98,9 +95,10 @@
             }
         \end{table}\footnotetext{\footcite[Vgl.][Anhang, Titel 1, Artikel 2]{l124-36}} \\
         Hierbei stehen die Parameter nicht ausschließlich in einer logischen \(UND\) Beziehung zueinander, sondern sind vielmehr wie folgt zu Interpretieren.
-        \[
-            Besch"aftigte \land \large( Umsatz} \oplus Bilanzsumme \large)
-        \]
+            \[
+            \text{Besch\"aftigte} \;\land\;
+            \bigl( \text{Umsatz} \oplus \text{Bilanzsumme} \bigr)
+            \]
         Das Ergebnis richtet sich somit ausschließlich an Unternehmen, die weniger als 250 Beschäftigte haben und entweder eine Bilanzsumme von unter 43 Millionen Euro oder einen Jahresumsatz von unter 50 Millionen Euro aufweisen.
     \subsection{Zielsetzung}
         \emph{Ergebnis der Arbeit soll ein Fragenkatalog mit Handlungsempfehlungen (Musterantworten) sein. Diesen sollen Unternehmen verwenden können um zum einen Ihre aktuelle Stellung einschätzen zu können. Ebenfalls sollen die Musterantworten den Unternehmen helfen existierende Lücken schneller zu schließen.}
@@ -132,6 +130,49 @@
         \emph{Einleitend in den theoretischen Rahmen soll die Forschungsfrage hinführend beschrieben werden. Somit ist der Kontext sowie der Rahmen dieser Arbeit gesteckt.}
         \subsection{Aktueller Forschungsstand}
             \emph{Die Richtlinien sind jeweils in noch kein national gültiges Recht überführt worden und gelten nur als Entwürfe. Demnach kann und gibt es noch keine konkret gültigen Publikationen. Abseits davon wurde sich bereits auf verschiedenen Ebenen mit dem Thema beschäftigt (Referenz zu relevanten Werken oder Organisationen (wie OPEN KRITIS)) und auch viele Aspekte sind in lange existierenden Standards (Referenz auf relevante Standards wie ISO27001, etc.) Aufgefasst. Konkrete Handlungsempfehlungen in der Form gibt es noch nicht ($\leftarrow$ diese Aussage muss geprüft werden.)}
+        
+        \subsection{Begriffsdefinitionen}
+            \subsubsection{Kritische Anlagen und kritische Dienstleistungen}
+            Eine kritische Anlage ist eine Anlage, welche für die Erbringung einer kritischen Dienstleistung erheblich ist. Eine kritische Dienstleistung wiederum ist eine Dienstleistung zu Versorgung der Allgemeinheit, dessen Ausfall oder Beeinträchtigung erhebliche Versorgungsengpässe oder die öffentlichen Sicherheit gefährden würde. Nach §56 Absatz 4 sind die kritischen Dienstleistungen nach §2 Nummer 24 für die genannten Sektoren durch das Bundesministerium des Innern und für Heimat in Einvernehmen mit diversen Ministerien durch Rechtsverordnungen zu bestimmen. Demnach gibt es aktuell noch keine spezifische definition von kritische Anlagen.
+
+            \subsubsection{Betreiber kritischer Anlagen}
+            Eine natürliche oder juristische Person sowie unselbständige Organisationseinheit einer Gebietskörperschaft, welche bestimmenden Einfluss auf eine oder mehrere kritische Anlagen ausübt. Dies ist unter Berücksichtigung der rechtlichen, wirtschaftlichen und tatsächlichen Umstände. 
+
+            Im Sektor des Finanzwesen ist alleine die tatsächliche Sachherrschaft  ausschlaggebend. Beispiel: Ein Finanzdienstleister betreibt seine kritischen Anlagen über die \emph{Finanzdienstleister IT Service GmbH}. So ist alleine diese Betreiber der Anlage, da die tatsächliche Sachherrschaft (Zugriff, Steuerung, usw. operative) bei der \emph{Finanzdienstleister IT Service GmbH} liegt.
+
+            \subsubsection{Vertrauensdiensteanbieter und qualifizierter Vertrauensdiensteanbieter}
+            Ein Vertrauensdiensteanbieter ist ein Anbieter, welcher Vertrauensdienste bereitstellt. Ein Vertrauensdienst ist im weitesten Sinne ein elektronischer Dienst, welcher einer der folgenden Kategorien zuzuordnen ist:
+            \begin{itemize}
+                \item Die Handhabung (Erstellung, Überprüfung und Validierung) von
+                \begin{itemize}
+                    \item elektronischen Signaturen
+                    \item elektronischen Siegel
+                    \item elektro­nischen Zeitstempel
+                    \item Zertifikaten für die Website-Authentifizierung
+                \end{itemize}
+                \item Zustellung elektronischer Einschreiben
+                \item Aufrechterhaltung von den Diensten betreffend der elektronischen Signaturen, Siegeln oder Zertifikaten
+            \end{itemize}
+
+            Qualifiziert ist der Vertrauensdienst, wenn er den Anforderungen der (EU) 910/2014 genügt. Dies ist für die Bundesrepublik Deutschland im Vertrauensdienstegesetz (VDG) geregelt.
+
+            Ein Anbieter ist dann als qualifizierter Vertrauensdiensteanbieter zu Betrachtet wenn (a) dieser qualifiziert Vertrauensdienste anbietet und (b) von der in dem Land zuständigen Aufsichtsstelle entsprechend eingestuft wurde. Für die Bundesrepublik Deutschland ist nach §2 des VDG Entsprechend die Bundesnetzagentur und nachgelagert das BSI zuständig.
+
+            \subsubsection{Telekommunikationsdienste}
+            Ein Telekommunikationsdienst ist im Allgemeinen ein Internetzugangdienst, interpersonelle Telekommunikationsdienste oder jeder Dienst, der ganz oder überwiegend in der Übertragung von Signalen über Telekommunikationsnetze besteht.
+
+            Öffentlich ist dieser Telekommunikationsdienste wenn er einem unbestimmten Personenkreis zur verfügung steht.
+
+            \subsubsection{Telekommunikationsnetz}
+            Ein Telekommunikationsnetz ist allgemein die Gesamtheit aller Übertragungssysteme um Informationen auszutauschen. Ein öffentliches Telekommunikationsnetz wiederum ist ein Telekommunikationsnetz (nach Satz 1), welche die Erbringung von öffentlich zugänglicher Telekommunikationsdiensten im Sinne der Übertragung von Informationen von Netzabschlusspunkten dienen. 
+
+            Ein Netzabschlusspunkten wiederum ist der physische Punkt an welchem ein Endnutzer, also eine natürliche oder juristische Person, die einen öffentlich zugänglichen Telekommunikationsdienst für private oder geschäftliche Zwecke in Anspruch nimmt und weder öffentliche Telekommunikationsnetze betreibt noch öffentlich zugängliche Telekommunikationsdienste erbringt.
+
+            \subsubsection{Kritische Komponente}
+            Eine kritische Komponente definiert sich aus verschiedenen Bestandteilen. Zunächst muss fundamental der Begriff des elektronischen Kommunikationsnetzes definiert werden. Dies ist eine einzelne oder eine Gruppe aus aktiven oder passiven Ressourcen, welche, unabhängig des Mediums, zur Übertragung von Signalen zum Austausch von Informationen verwendet werden (Vgl. Art. 2, Buchstabe a Richtlinie 2002/21/EG). Dies wiederum ist Bestandteil der Definition von Netz- und Informationssystemen. Fokussiert man sich zunächst auf den Begriff des Informationssystems kann man dies als Gruppe von Anwendungen, Diensten, informationstechnischen Anlagen oder anderen Komponenten für die Informationsverarbeitung definieren (Vgl. S. 5 27000-2018). Allgemein gültiger ist ein Informationssystemen eine Vorrichtung oder die Gruppe von Vorrichtungen, welche die automatische Datenverarbeitung unter Grundlage eines Programmes durchführt. Somit definiert sich das Netz- und Informationssystemen aus der Definition von elektronischen Kommunikationsnetzen und Informationssysteme, sowie den Daten, welche zum Zweck des Betriebes eines elektronisches Kommunikationsnetz oder Informationssystem gespeichert, verarbeitet, abgerufen oder übertragen werden (Vgl. Art. 4 Nummer 1, Richtlinie (EU) 2016/1148).
+
+            Eine kritischen Komponente wiederum ist ein Informations- und Kommunikationstechnik Produkt (IKT-Produkt). Dies ist ein ein Element oder eine Gruppe aus Elementen eines Netz- und Informationssystem (Vgl. Art. 2  Nummer 12  der  Verordnung  (EU) 2019/881). Kritisch wird die Komponente dadurch das diese in einer kritischen Anlagen eingesetzt und unter Grundlage des NIS-2-Umsetzungs- und Cybzersicherheitsstärkungsgesetz (NIS2UmsuCG) als kritische Komponente bestimmt wird oder eine kritische Funktion realisiert (Vgl. §2 Nummer 23).
+            
         \subsection{Anforderungen der Europäischen Union}
             \emph{Hinleitung an die für die Arbeit relevanten Richtlinien und Anforderungen, welche aus der Mitgliedschaft hervorgehen.}
             \subsubsection{Vertrag über die Arbeitsweise der Europäischen Union (Konsolidierte Fassung)}
@@ -139,7 +180,92 @@
             \subsubsection{Richtlinie (EU) 2022/2555}
                 \emph{Herleitung seit wann die Richtlinie besteht sowie der Zeitpunkt seit dem diese als nationales Recht umgesetzt sein müsste. Ebenfalls Bezug auf das nationale Recht bzw. den Gesetzesentwurf zu NIS2 und den Hauptfokus (Informationssicherheit) dieser Richtlinie.}
             \subsubsection{Richtlinie (EU) 2022/2557}
-            \emph{Herleitung seit wann die Richtlinie besteht sowie der Zeitpunkt seit dem diese als nationales Recht umgesetzt sein müsste. Ebenfalls Bezug auf das nationale Recht bzw. den Gesetzesentwurf zu KRITIS und den Hauptfokus (physische Resilienz) dieser Richtlinie.}            
+            \emph{Herleitung seit wann die Richtlinie besteht sowie der Zeitpunkt seit dem diese als nationales Recht umgesetzt sein müsste. Ebenfalls Bezug auf das nationale Recht bzw. den Gesetzesentwurf zu KRITIS und den Hauptfokus (physische Resilienz) dieser Richtlinie.}
+        
+        \subsection{NIS-2-Umsetzungs- und Cybersicherheitsstärkungsgesetz}
+        \subsubsection{Wer ist betroffen?}
+        Nach dem Gesetzentwurf der Bundesregierung vom 22.07.2024 sind vom NIS-2-Umsetzungs- und Cybzersicherheitsstärkungsgesetz (NIS2UmsuCG) privatwirtschaftliche Unternehmen, welche als Besonders wichtige oder wichtige Einrichtungen gelten, betroffen (Vgl. §28 Absatz 1, 2, 3 \& 7). Zusätzlich gelten Einrichtungen der Bundesverwaltung, welche Bundesbehörden, öffentlich-rechtlich organisierte IT-Dienstleister der Bundesverwaltung und weitere Organe der Bundesbehörden sind, als besonders wichtige Einrichtungen (Vgl. §29 Absatz 2). Weitere Organe der Bundesbehörden sind als Einrichtungen der Bundesverwaltung anzusehen, sofern diese in Einvernehmen zwischen dem Bundesamt für Sicherheit in der Informationstechnik (BSI) und dem Bundesressort als Einrichtungen der Bundesverwaltung deklariert werden (Vgl. §29 Absatz 1 Satz 3). Einrichtungen der Bundesverwaltung sind von Durchsetzungsmaßnahmen, Bußgeldern sowie Meldungen zu Vorfällen ausgeschlossen (Vgl. §29 Absatz 3).
+
+        Als besonders wichtige Einrichtung gilt man, wenn man Betreiber einer kritischen Anlage ist (Vgl. §28 Absatz 1 Nummer 1). 
+
+        Eine kritische Anlage ist eine Anlage, welche für die Erbringung einer kritischen Dienstleistung erheblich ist. Eine kritische Dienstleistung wiederum ist eine Dienstleistung zu Versorgung der Allgemeinheit, dessen Ausfall oder Beeinträchtigung erhebliche Versorgungsengpässe oder die öffentlichen Sicherheit gefährden würde. Kritischen Dienstleistungen in den Sektoren Energie, Transport und Verkehr, Finanzwesen, Sozialversicherungsträger sowie Grundsicherung für Arbeitssuchende, Gesundheitswesen, Wasser, Ernährung, Informationstechnik und Telekommunikation, Weltraum und Siedlungsabfallentsorgung sind durch das Bundesministerium des Innern und für Heimat in Einvernehmen mit den jeweiligen Bundesressorts durch Rechtsverordnungen zu bestimmen (Vgl. §2 Nummer 22 und 24 sowie §56 Absatz 4).
+
+        Betreiber einer kritische Anlage ist eine natürliche oder juristische Person sowie unselbständige Organisationseinheit einer Gebietskörperschaft wenn diese bestimmenden Einfluss auf eine oder mehrere kritische Anlagen ausübt. Hierbei werden die rechtlichen, wirtschaftlichen und tatsächlichen Umstände betrachtet. Somit könne beispielsweise IT-Dienstleister, welche die Informationstechnische Infrastruktur einer kritischen Dienstleistung verwaltet, als Betreiber kritischer Anlage gesehen werden, da diese bestimmenden Einfluss unter Betrachtung der tatsächlichen Umstände auf die kritische Dienstleistung haben.
+
+        Zusätzlich gelten qualifizierte Vertrauensdiensteanbieter, Top Level Domain Name Registries oder DNS- Diensteanbieter als besonders wichtige Einrichtung. Wenn ein Anbieter öffentlich zugängliche Telekommunikationsdienste oder Telekommunikationsnetze anbietet und mindestens 50 Mitarbeiter Beschäftig, oder einen Jahresumsatz sowie eine Jahresbilanzsumme von mindestens 10 Mio. Euro aufweist, gilt dieser ebenfalls als besonders wichtige Einrichtung (Vgl. §28 Absatz 1 Satz 2 \& 3).
+
+        Darüberhinaus sind Unternehmen, welche mindestens 250 Mitarbeiter beschäftigen oder einen Jahresumsatz von 50 Mio. Euro und Jahresbilanzsumme von 43 Mio. Euro aufweisen, ebenfalls als besonders wichtige Einrichtungen anzusehen, wenn diese in einem der unter Anhang 1 beschriebenen Bereiche fallen (Vgl. §28 Absatz 1 Nummer 4).
+
+        Ist ein Unternehmen nicht als besonders wichtige Einrichtung klassifiziert ist es durchaus möglich das dies als wichtige Einrichtung gilt. Dies liegt dann vor wenn das Unternehmen ein Vertrauensdiensteanbieter ist, oder alternativ Anbieter öffentlich zugängliche Telekommunikationsdienste oder Telekommunikationsnetze mit weniger als 50 beschäftigten sowie ein Jahresumsatz und Jahresbilanzsumme von weniger als 10 Mio. Euro aufweist . Unternehmen die unter die Beschreibung in Anhang 1 und Anhang 2 fallen sind wichtige Einrichtung wenn mindestens 50 Mitarbeiter Beschäftig, oder einen Jahresumsatz sowie eine Jahresbilanzsumme von mindestens 10 Mio. Euro vorliegt (Vgl. §28 Absatz 2).
+
+        Bei besonders wichtigen sowie wichtigen Einrichtungen wird für die Ermittlung der Mitarbeiterzahlen, Jahresumsatz sowie Jahresbilanzsumme nicht ausschließlich das Unternehmen an sich betrachtet, vielmehr werden Partner- oder verbundenen Unternehmen mit derselben Geschäftstätigkeit konsolidiert bewertet (§28 Absatz 3, 2003/361/EG Artikel 6 Absatz 2 und 9783946702207 "abstellen"). Hierzu ist es erforderlich das unter Anbetracht der rechtlichen, wirtschaftlichen und tatsächlichen Umstände die Unternehmen in Hinsicht auf die Beschaffenheit und den Betrieb der informationstechnischen Systeme, Komponenten und Prozesse voneinander nicht unabhängig sind.
+
+        [§56 Abs. 4]
+
+        \subsubsection{Was müssen betroffene umsetzen?}
+        Besonders wichtige und wichtige Einrichtungen sind dazu verpflichtet technische und organisatorische Maßnahmen umzusetzen, welche die Verfügbarkeit, Integrität und Vertraulichkeit der informationstechnischen Systeme, Komponenten und Prozesse gewährleisten soll. Hierbei liegt der Fokus auf den Komponenten, welche zur Erbringung der kritischen Dienstleistungen erfolgreich sind. Somit soll darüberhinaus die Auswirkung Sicherheitsvorfällen möglichst gering gehalten werden. Die Umzusetzenden Maßnahmen sollen entsprechend verhältnismäßig sein. Die Bewertung der Verhältnismäßigkeit betrachtet
+        \begin{enumerate}
+            \item Risikoexposition
+            \item Größe der Einrichtung
+            \item Umsetzungskosten
+            \item Eintrittswahrscheinlichkeit
+            \item Schwere von Sicherheitsvorfällen
+            \item gesellschaftliche und wirtschaftlichen Auswirkungen
+        \end{enumerate}
+
+        Zusätzlich ist zu Bewertung der Verhältnismäßigkeit für Betreiber kritischer Anlagen die Beeinträchtigung oder der Ausfall dieser zu betrachten. Somit gilt der Aufwand als verhältnismäßig sobald eine Beeinträchtigung oder der Ausfall der Anlage gravierender ist als tie tatsächliche Umsetzung verhütender technischer und organisatorischer Maßnahmen. (§31 Abs. 1)
+
+        Unter anderem ist einer der zentralen Aspekte das die Umsetzungen auch entsprechend Dokumentiert sein müssen (Vgl. §30 Abs. 1). Besonders wichtig ist dies für Betreiber kritischer Anlagen, da dies verpflichtet sind die Umsetzungen dem BSI im Turnus von drei Jahren verfügbar zu machen. Nachgewiesen wird die Umsetzung durch Sicherheitsaudits, Prüfungen oder Zertifizierungen (§39 Abs. 1).
+
+        Die ergriffenen Maßnahmen sollen den Stand der Technik einhalte. Dies ermöglicht man indem einschlägige europäische und internationalen Normen berücksichtigt und ein gefahrenübergreifenden Ansatz betrachtet wird. Ein gefahrenübergreifenden Ansatz bedeutet in diesem Kontext das Informationssicherheit nicht als Insel sondern gesamtheitliches Konzept zu sehen ist. Bei Lieferketten sind entsprechend Lieferanten Teil der erforderlichen Risikobetrachtung (Vgl. §30 Abs. 2). 
+
+        Mit [NIS2 Directive - Commission implementing Regulation C(2024) 7151 - ANNEX] wird der entsprechende Rahmen definiert was Umzusetzen ist (§30 Abs. 3, 4 und 5).
+
+        Betreiber kritischer Anlagen müssen zusätzlich Systeme zur Angriffserkennung einzusetzen. Dieses System muss geeignete Parameter und Merkmale aus dem laufenden Betrieb fortwährend und automatisch erfassen und auswerten. Das System soll die Betreiber der kritischen Anlage in die Lage versetzen fortwährend Bedrohungen zu identifizieren sowie zu vermeiden und für eingetretene Störungen geeignete Beseitigungsmaßnahmen vorzusehen. Auch hier gilt hinsichtlich des Aufwandes der Grundsatz der Verhältnismäßigkeit (§31 Abs. 2.).
+
+        Das ganze stützt sich auf der Verpflichtung der Geschäftsleitungen besonders wichtiger und wichtiger Einrichtungen diese Maßnahmen umzusetzen und dessen Umsetzung zu überwachen (§38 Abs. 1). Damit diese in der Lage ist eine entsprechende Umsetzung und dessen Überwachung zu gewährleisten sind regelmäßige Schulungsmaßnahmen für die Geschäftsleitung durchzuführen, sodass diese ausreichende Kenntnisse und Fähigkeiten zur Erkennung und Bewertung von Risiken und Risikomanagementpraktiken im Bereich der Sicherheit in der Informationstechnik erlangt. Hierbei ist es wichtig das diese die Auswirkungen von Risiken sowie Risikomanagementpraktiken auf die von ihrer Einrichtung angebotenen Dienste beurteilen könne (§38 Abs. 3).
+
+        \subsubsection{Melde- und Unterrichtungspflichten}
+        Allgemein sind erhebliche Sicherheitsvorfälle einer vom Bundesamt für Sicherheit in der Informationstechnik (BSI) und Bundesamt für Bevölkerungsschutz und Katastrophenhilfe (BBK) eingerichtete gemeinsame Meldestelle anzuzeigen. 
+
+        Die Allgemeine Ausgestaltung des Verfahrens des melden von Sicherheitsvorfällen sowie dessen Inhalt ist durch das Informationstechnik (BSI) und Bundesamt für Bevölkerungsschutz und Katastrophenhilfe (BBK) festzulegen. Im Rahmen der Festlegung der Durchführungsrechtsakte sollen betroffene Betreiber und Wirtschaftsverbände angehört werden (§32 Abs. 4).  
+
+        Betroffen hiervon sind besonders wichtige oder wichtige Einrichtungen (§32 Abs. 1). Erlangt eine besonders wichtige oder wichtige Einrichtungen Kenntnis über einen erheblichen Sicherheitsvorfall müssen diese spätestens nach 24 Stunden eine Erstmeldung abgeben. Die Erstmeldung soll widerspiegeln ob der Verdacht besteht, dass der erhebliche Sicherheitsvorfall auf rechtswidrige oder böswillige Handlungen zurückzuführen ist oder grenzüberschreitende Auswirkungen haben könnte (§32 Abs. 1).
+
+        Handelt es sich um einen Betreiber kritischer Anlagen und der Sicherheitsvorfall könnte sich auf diese Auswirken, oder hat tatsächlich Auswirkungen, sind zusätzlich Angaben zu der Art der Betroffenen kritischen Anlage sowie der kritischen Dienstleistung und der entsprechenden Auswirkung zu tätigen (§32 Abs. 3).
+
+        Binnen 72 Stunden nach Kenntnisnahme eines erheblichen Sicherheitsvorfalles ist die Erstmeldung durch eine Meldung über den Sicherheitsvorfall abzulösen. Hierbei sollen die information zum einen aktualisiert aber auch verifiziert oder falsifiziert werden. Wichtiger Bestandteil der Meldung ist eine erste Bewertung des erheblichen Sicherheitsvorfalles inklusive Schweregrad und Auswirkung sowie die Indikatoren der Komprimierung. Zusätzlich kann das Bundesamt für Sicherheit in der Informationstechnik (BSI) eine Zwischenmeldung einfordern, welche relevante Statusaktualisierungen beinhaltet (§32 Abs. 1 Nummer 2 und 3). 
+
+        Spätestens einen Monat nach Übermittlung der Meldung wird eine Abschlussmeldung gegeben. Die Abschlussmeldung ist eine ausführliche  Beschreibung des Sicherheitsvorfalls, inklusive seines Schweregrads und dessen Auswirkungen sowie Angaben zur Art und Ursache. Relevant sich auch die getroffenen und fortwährenden Abhilfemaßnahmen. Wenn die Auswirkungen grenzüberschreitend sind diese Auswirkungen ebenfalls zu beschreiben (§32 Abs. 4). Sollte der Sicherheitsvorfalls nach einem Monat weiterhin anhalten ist eine Fortschrittsmeldung zu verrichten und die Abschlussmeldung wird erst nach Abschließender Bearbeitung vorgelegt (§32 Abs. 2)
+
+        Der erhalt der getätigten Meldungen werden unverzüglich und, sofern möglich, spätestens nach 24 Stunde vom Bundesamt für Sicherheit in der Informationstechnik (BSI) Bestätigt. Die betroffene Einrichtung kann ebenfalls Orientierungshilfen, operative Beratung oder technische Unterstützung zu Abhilfemaßnahmen durch das Bundesamt für Sicherheit in der Informationstechnik (BSI) erhalten (§36 Abs. 1).
+
+        Nicht nur eine Meldung an das Bundesamt für Sicherheit in der Informationstechnik (BSI) kann bei einem erheblichen Sicherheitsvorfall notwendig sein. Besonders wichtige Einrichtungen und wichtigen Einrichtungen können vom Bundesamt für Sicherheit in der Informationstechnik (BSI) aufgefordert werden die Empfänger ihrer Dienste von einem erheblichen Sicherheitsvorfall zu unterrichten, wenn die entsprechenden Dienste beinträchtig sind. Hier kann eine Publikation auf der eigenen Internetseite der Einrichtung hinreichend sein (§35 Abs. 1).
+
+        Ist die besonders wichtige oder wichtigen Einrichtungen dem Sektor Finanzwesen, Sozialversicherungsträger sowie Grundsicherung für Arbeitssuchende, digitale Infrastruktur, Verwaltung von IKT-Diensten oder Digitale Dienste zuzuordnen sind bereits bei einer erheblichen Cyberbedrohung die Empfänger der entsprechenden Dienste sowie das Bundesamt für Sicherheit in der Informationstechnik (BSI) zu Informieren. Hierbei muss die Einrichtung unverzüglich alle Maßnahmen oder Abhilfemaßnahmen mitteilen, welche die Empfänger als Reaktion auf diese Bedrohung ergreifen können. Ebenfalls ist über die erhebliche Cyberbedrohung selbst zu informieren. Diese pflichten gelten ausschließlich wenn die Interessen des Empfänger die der Einrichtung überwiegen (§35 Abs. 2).
+
+        \subsubsection{Registrierungspflicht}
+        Ebenfalls ist es für besonders wichtige und wichtige Einrichtungen, sowie für Domain-Name-Registry-Diensteanbieter, sich bei einer vom Bundesamt für Sicherheit in der Informationstechnik (BSI) und Bundesamt für Bevölkerungsschutz und Katastrophenhilfe  gemeinsam eingerichteten Registrierungsmöglichkeit zu registrieren. Dies muss binnen drei Monaten, nachdem diese erstmals oder erneut als solche Einrichtung gelten, erfolgen (§33 Abs. 1). Prinzipiell sind die Einzelheiten des Registrierungsverfahrens durch das Bundesamt für Sicherheit in der Informationstechnik (BSI) im einvernehmen mit dem Bundesamt für Bevölkerungsschutz und Katastrophenhilfe festzulegen und über dessen Internetseite zu veröffentlichen (§33 Abs. 6).
+
+        Im Rahmen des Registrierungsverfahrens sind diverse angaben zu Tätigen. Neben dem Namen, der Rechtsform und, sofern zutreffend, der Handelsregisternummer sind ebenfalls Anschrift sowie aktuelle Kontaktdaten inklusive der E-Mail-Adresse und öffentlichen IP-Adressbereiche anzugeben. Zusätzlich dazu muss die Brache oder, sofern einschlägig, der Sektor und eine Auflistung der EU Mitgliedstaaten, in welche die entsprechenden Dienste erbracht werden, erfolgen. Die Angabe der für die Einrichtung zuständige Aufsichtsbehörden des Bundes sowie der Länder ist ebenfalls notwendig (§33 Abs. 1). 
+
+        Betreiber kritischer Anlagen müssen zusätzlich ihre Anlagenkategorie nach BSI-KritisV sowie die ermittelten Versorgungskennzahlen gemäß der zu bestimmenden Rechtsverordnung des NIS2UmsuCG mitteilen. Der Standort sowie eine Kontaktstelle, welche stets verfügbar ist, muss ebenfalls angegeben werden. Darüberhinaus ist die kritische Dienstleistung sowie die öffentlichen IP-Adressbereiche der damit verbundenen Anlagen Bestandteil der Registrierung eines Betreibers kritischer Anlagen (§33 Abs. 1).
+
+        Das Bundesamt für Sicherheit in der Informationstechnik (BSI) kann in einvernehmen mit der jeweilig zuständigen Aufsichtsbehörde besonders wichtigen und wichtigen Einrichtungen, sowie Domain-Name-Registry-Diensteanbieter, eigenständig Registrieren, sofern diese ihrer Pflicht nicht nachkommen (§33 Abs. 3). Alternativ kann das Bundesamt für Sicherheit in der Informationstechnik (BSI) die aus ihrer Sicht notwendigen Aufzeichnungen, Schriftstücke und sonstigen Unterlagen Anfordern um den Umstand der Registrierungspflicht zu bewerten. Dies unter der Voraussetzung das aus sich der Einrichtung Geheimschutzinteressen oder überwiegende Sicherheitsinteressen vorliegt (§33 Abs. 4). Sollten sich Änderungen an den zu Übermittelnden Informationen ergeben müssen diese binnen zwei Wochen mitgeteilt werden (§33 Abs. 5).
+
+        Bei Einrichtungen der Art DNS-Diensteanbieter, Top Level Domain Name Registries,Domain-Name-Registry-Dienstleister, Anbieter von Cloud-Computing-Diensten, Anbieter von Rechenzentrumsdiensten, Betreiber von Content Delivery Networks, Managed Service Provider, Managed Security Service Provider sowie für Anbieter von Online-Marktplätzen, Online-Suchmaschinen sowie Plattformen für Dienste sozialer Netzwerke ist zusätzlich die Hauptniederlassung sowie sonstigen Niederlassungen in der Europäischen Union anzugeben. Bei Änderungen haben diese Einrichtung eine first von drei Monate anstelle der zwei Wochen (§34).
+
+        \subsubsection{Anzeige des Einsatzes kritischer Komponenten}
+
+        [§41]
+
+        \subsubsection{Zertifizierungen und IT-Sicherheitskennzeichen}
+        Zentraler Bestandteil für die Konformität nach gewissen Vorgaben sind Zertifizierungen. So kann für Produkte oder Leistungen eine Sicherheits- oder Personenzertifizierung oder eine Zertifizierung als IT-Sicherheitsdienstleister beantragt werden. Hierbei fungiert das Bundesamt für Sicherheit in der Informationstechnik (BSI) als nationale Zertifizierungsstelle der Bundesverwaltung für IT-Sicherheit (Vgl. §52 Abs. 1 und 2). Diese Zertifikate könne entsprechend von anerkannte sachverständige Stellen ausgestellt werden. Anerkannt ist eine Stelle, wenn diese die sachliche und personelle Ausstattung sowie die fachliche Qualifikation und Zuverlässigkeit der Konformitätsbewertungsstelle nach vom Bundesamt für Sicherheit in der Informationstechnik (BSI) festgelegten Kriterien erfüllt (Vgl. §52 Abs. 3 und 7). Zusätzlich können Zertifizierungen anderer anerkannter Zertifizierungsstellen aus dem Bereich der Europäischen Union anerkannt werden, wenn diese gleichwertige Sicherheit ausweisen und die Gleichwertigkeit durch das Bundesamt für Sicherheit in der Informationstechnik (BSI) festgelegt wurde (§52 Abs. 8).
+
+        Darüberhinaus kann der Begriff nationale Zertifizierungsstelle auf nationale Behörde für die Cybersicherheitszertifizierung ausgeweitet werden (§54 Abs. 1). Das Bundesamt für Sicherheit in der Informationstechnik (BSI) ist verantwortlich und bemächtigt Konformitätsbewertungsstellen zu Auditiren, um die Konformität der Zertifizierung zu gewährleisten. Ferner kann das Bundesamt für Sicherheit in der Informationstechnik (BSI) die Vorlage von Unterlagen oder Mustern verlangen, oder erforderlichen Auskünfte und sonstige Unterstützung, um seiner Pflicht nachzukommen. Darunter fallen ebenfalls die Besichtigung der Betriebsstätten, Geschäfts- und Betriebsräume sowie die Prüfung der dort befindliche Unterlagen und Muster (§54 Abs. 3, 4 und 5). Erfüllt eine Konformitätsbewertungsstellen die Anforderungen nicht mehr kann das Bundesamt für Sicherheit in der Informationstechnik (BSI) die entsprechende Akkreditierung entziehen (Vgl. §54 Abs. 6 und 7).
+
+        [§55]
+
         \subsection{Nationale Umsetzungsentwürfe}
             \emph{Bezug zu den Anforderungen aus der Europäischen Union und in welche Entwürfe die Richtlinien umgesetzt wurden.}
             \subsubsection{NIS-2-Umsetzungs- und Cybersicherheitsstärkungsgesetz}
@@ -176,5 +302,6 @@
 
     %:: Abschnitt: Literatur
     \newpage
+    \nocite{*}
     \printbibliography
 \end{document}

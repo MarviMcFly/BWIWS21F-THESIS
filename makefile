@@ -11,16 +11,17 @@ prepare:
 	echo $$timestamp > $(TIMESTAMP); \
 
 build: prepare
-	pdflatex -synctex=1 -interaction=nonstopmode -output-directory=./ $(TEX).tex
+	pdflatex -synctex=1 -interaction=nonstopmode -output-directory=./ $(TEX).tex 
 	
 	@if [ -f "$(TEX).acn" ] || [ -f "$(TEX).glo" ]; then \
 		makeglossaries -d ./ $(TEX);	\
-	fi
+	fi 
 
 	@if [ -f "$(TEX).bcf" ]; then \
 		biber $(TEX); \
-	fi
+	fi 
 	
+	pdflatex -synctex=1 -interaction=nonstopmode -output-directory=./ $(TEX).tex
 	pdflatex -synctex=1 -interaction=nonstopmode -output-directory=./ $(TEX).tex
 
 	@timestamp=$$(cat .timestamp); \
