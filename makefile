@@ -10,7 +10,10 @@ prepare:
 	@timestamp=$$(date +%Y%m%d-%H%M%S); \
 	echo $$timestamp > $(TIMESTAMP); \
 
-build: prepare
+build:
+	$(MAKE) _build || $(MAKE) error
+
+_build: prepare
 	pdflatex -synctex=1 -interaction=nonstopmode -output-directory=./ $(TEX).tex 
 	
 	@if [ -f "$(TEX).acn" ] || [ -f "$(TEX).glo" ]; then \
@@ -26,6 +29,9 @@ build: prepare
 
 	@timestamp=$$(cat .timestamp); \
 	cp -f $(TEX).pdf $(BUILDDIR)/$${timestamp}_$(TEX).pdf
+	
+	@clear
+	@echo "----  Build sucessfull ----\n"
 
 release: clean build
 	@timestamp=$$(cat .timestamp); \
@@ -44,5 +50,11 @@ cleanall: clean
 	@rm -f $(TEX).pdf
 	@rm -rf $(BUILDDIR)
 	@rm -rf $(TIMESTAMP)
+
+error:
+	@clear
+	@echo "----  Errors where found ----\n"
+	@cat main.log | grep "\!" -n
+	@echo "\n-----------------------------\n"
 
 .PHONY: prepare build release clean cleanall quick

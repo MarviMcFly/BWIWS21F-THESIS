@@ -22,7 +22,7 @@
 
 %:: Wissenschaftlicher Apparat
 \usepackage{hyperref}                   % Hyperlinks für Referenzen, Inhaltsverzeichnis, etc.
-\usepackage[toc,acronym,nomain]{glossaries}
+\usepackage[toc,acronym,nomain,nonumberlist]{glossaries}
                          % Glossar- und Abkürzungsverzeichnis
 
 \usepackage[
@@ -40,10 +40,10 @@
 
 \renewcommand{\familydefault}{\sfdefault}
 
+\setlength{\parindent}{0pt}
 
 \bibliography{bibliography.bib}
 \loadglsentries{./acronyms.tex} % Einbinden des Glossars fuer Akronyme
-% \loadglsentries{./glossarie.tex}
 \input{./titlepage.tex} 
 
 \makeglossaries
@@ -62,9 +62,6 @@
 	\newpage
     \addcontentsline{toc}{section}{Tabellenverzeichnis}
 	\listoftables
-	    %\newpage
-	    % \addcontentsline{toc}{section}{Abkürzungsverzeichnis}
-	    % \printglossary
 	\newpage
     \printglossary[type=\acronymtype, title=Abkürzungsverzeichnis, toctitle=Abkürzungsverzeichnis]
 
@@ -127,20 +124,23 @@
     %:: Abschnitt: Theoretischer Rahmen
     \newpage
     \section{Theoretischer Rahmen}
-        \emph{Einleitend in den theoretischen Rahmen soll die Forschungsfrage hinführend beschrieben werden. Somit ist der Kontext sowie der Rahmen dieser Arbeit gesteckt.}
+        Im Rahmen des Kapitel des theoretischen Rahmen werden alle Grundlagen und definition getroffen, auf welchem diese Arbeit beruht. Dies ist die fundamentale Basis der Herleitung des Fragenkatalog beschrieben in Abschnitt \ref{sec:HerleitungDesFragenkatalog} und Ordnet darüberhinaus diese Arbeit in den aktuellen Forschungsstand ein.
         \subsection{Aktueller Forschungsstand}
             \emph{Die Richtlinien sind jeweils in noch kein national gültiges Recht überführt worden und gelten nur als Entwürfe. Demnach kann und gibt es noch keine konkret gültigen Publikationen. Abseits davon wurde sich bereits auf verschiedenen Ebenen mit dem Thema beschäftigt (Referenz zu relevanten Werken oder Organisationen (wie OPEN KRITIS)) und auch viele Aspekte sind in lange existierenden Standards (Referenz auf relevante Standards wie ISO27001, etc.) Aufgefasst. Konkrete Handlungsempfehlungen in der Form gibt es noch nicht ($\leftarrow$ diese Aussage muss geprüft werden.)}
         
         \subsection{Begriffsdefinitionen}
+        Im Rahmen dieser Arbeit werden diverse Begriffe verwendet. Um ein einheitliches VVerständnis zu schaffen ist zunächst die definition grundlegend relevanter Begriffe erforderlich. Im folgenden Abschnitt werden alle Relevanten Begriff hinsichtlich Ihrer Bedeutung definiert.       
             \subsubsection{Kritische Anlagen und kritische Dienstleistungen}
-            Eine kritische Anlage ist eine Anlage, welche für die Erbringung einer kritischen Dienstleistung erheblich ist. Eine kritische Dienstleistung wiederum ist eine Dienstleistung zu Versorgung der Allgemeinheit, dessen Ausfall oder Beeinträchtigung erhebliche Versorgungsengpässe oder die öffentlichen Sicherheit gefährden würde. Nach §56 Absatz 4 sind die kritischen Dienstleistungen nach §2 Nummer 24 für die genannten Sektoren durch das Bundesministerium des Innern und für Heimat in Einvernehmen mit diversen Ministerien durch Rechtsverordnungen zu bestimmen. Demnach gibt es aktuell noch keine spezifische definition von kritische Anlagen.
+            Eine kritische Anlage ist eine Anlage, welche für die Erbringung einer kritischen Dienstleistung erheblich ist. Eine kritische Dienstleistung wiederum ist eine Dienstleistung zu Versorgung der Allgemeinheit, dessen Ausfall oder Beeinträchtigung erhebliche Versorgungsengpässe oder die öffentlichen Sicherheit gefährden würde. Nach §56 Absatz 4 sind die kritischen Dienstleistungen nach §2 Nummer 24 für die genannten Sektoren durch das Bundesministerium des Innern und für Heimat in Einvernehmen mit diversen Ministerien durch Rechtsverordnungen zu bestimmen. Demnach gibt es aktuell noch keine spezifische definition von kritische Anlagen.\footnote{
+                \footcite[§2 Nummer 22 und 24 sowie §56 Absatz 4][]{NIS2UmsuCG}
+            }
 
             \subsubsection{Betreiber kritischer Anlagen}
-            Eine natürliche oder juristische Person sowie unselbständige Organisationseinheit einer Gebietskörperschaft, welche bestimmenden Einfluss auf eine oder mehrere kritische Anlagen ausübt. Dies ist unter Berücksichtigung der rechtlichen, wirtschaftlichen und tatsächlichen Umstände. 
+            Eine natürliche oder juristische Person sowie unselbständige Organisationseinheit einer Gebietskörperschaft, welche bestimmenden Einfluss auf eine oder mehrere kritische Anlagen ausübt. Dies ist unter Berücksichtigung der rechtlichen, wirtschaftlichen und tatsächlichen Umstände. Im Sektor des Finanzwesen ist alleine die tatsächliche Sachherrschaft  ausschlaggebend.\footnote{
+                \footcite[§28 Absatz 7][]{NIS2UmsuCG}
+            }
 
-            Im Sektor des Finanzwesen ist alleine die tatsächliche Sachherrschaft  ausschlaggebend. Beispiel: Ein Finanzdienstleister betreibt seine kritischen Anlagen über die \emph{Finanzdienstleister IT Service GmbH}. So ist alleine diese Betreiber der Anlage, da die tatsächliche Sachherrschaft (Zugriff, Steuerung, usw. operative) bei der \emph{Finanzdienstleister IT Service GmbH} liegt.
-
-            \subsubsection{Vertrauensdiensteanbieter und qualifizierter Vertrauensdiensteanbieter}
+            \subsubsection{Vertrauensdienst, Vertrauensdiensteanbieter und qualifizierter Vertrauensdiensteanbieter}
             Ein Vertrauensdiensteanbieter ist ein Anbieter, welcher Vertrauensdienste bereitstellt. Ein Vertrauensdienst ist im weitesten Sinne ein elektronischer Dienst, welcher einer der folgenden Kategorien zuzuordnen ist:
             \begin{itemize}
                 \item Die Handhabung (Erstellung, Überprüfung und Validierung) von
@@ -153,135 +153,133 @@
                 \item Zustellung elektronischer Einschreiben
                 \item Aufrechterhaltung von den Diensten betreffend der elektronischen Signaturen, Siegeln oder Zertifikaten
             \end{itemize}
+            Qualifiziert ist der Vertrauensdienst, wenn er den Anforderungen der Verordnung (EU) Nr. 910/2014 genügt. Dies ist für die Bundesrepublik Deutschland im \gls{vdg} geregelt.
 
-            Qualifiziert ist der Vertrauensdienst, wenn er den Anforderungen der (EU) 910/2014 genügt. Dies ist für die Bundesrepublik Deutschland im Vertrauensdienstegesetz (VDG) geregelt.
-
-            Ein Anbieter ist dann als qualifizierter Vertrauensdiensteanbieter zu Betrachtet wenn (a) dieser qualifiziert Vertrauensdienste anbietet und (b) von der in dem Land zuständigen Aufsichtsstelle entsprechend eingestuft wurde. Für die Bundesrepublik Deutschland ist nach §2 des VDG Entsprechend die Bundesnetzagentur und nachgelagert das BSI zuständig.
+            Ein Anbieter ist dann als qualifizierter Vertrauensdiensteanbieter zu Betrachtet wenn dieser qualifiziert Vertrauensdienste anbietet und von der in dem Land zuständigen Aufsichtsstelle entsprechend eingestuft wurde. Für die Bundesrepublik Deutschland ist nach §2 des \gls{vdg} Entsprechend die Bundesnetzagentur und nachgelagert das \gls{bsi} zuständig.\footnote{
+                \footcite[Vgl. Artikel 3, Nummer 16, 17, 19 und 20][]{EU910-2014}
+                \footcite[Vgl. §2][]{VDG}
+            }
 
             \subsubsection{Telekommunikationsdienste}
-            Ein Telekommunikationsdienst ist im Allgemeinen ein Internetzugangdienst, interpersonelle Telekommunikationsdienste oder jeder Dienst, der ganz oder überwiegend in der Übertragung von Signalen über Telekommunikationsnetze besteht.
-
-            Öffentlich ist dieser Telekommunikationsdienste wenn er einem unbestimmten Personenkreis zur verfügung steht.
+            Ein Telekommunikationsdienst ist im Allgemeinen ein Internetzugangdienst, interpersonelle Telekommunikationsdienste oder jeder Dienst, der ganz oder überwiegend in der Übertragung von Signalen über Telekommunikationsnetze besteht. Öffentlich ist dieser Telekommunikationsdienste wenn er einem unbestimmten Personenkreis zur verfügung steht.\footnote{
+                \footcite[Vgl. §3 Nummer 60][]{TKG}
+            }
 
             \subsubsection{Telekommunikationsnetz}
-            Ein Telekommunikationsnetz ist allgemein die Gesamtheit aller Übertragungssysteme um Informationen auszutauschen. Ein öffentliches Telekommunikationsnetz wiederum ist ein Telekommunikationsnetz (nach Satz 1), welche die Erbringung von öffentlich zugänglicher Telekommunikationsdiensten im Sinne der Übertragung von Informationen von Netzabschlusspunkten dienen. 
-
-            Ein Netzabschlusspunkten wiederum ist der physische Punkt an welchem ein Endnutzer, also eine natürliche oder juristische Person, die einen öffentlich zugänglichen Telekommunikationsdienst für private oder geschäftliche Zwecke in Anspruch nimmt und weder öffentliche Telekommunikationsnetze betreibt noch öffentlich zugängliche Telekommunikationsdienste erbringt.
+            Ein Telekommunikationsnetz ist allgemein die Gesamtheit aller Übertragungssysteme um Informationen auszutauschen. Ein öffentliches Telekommunikationsnetz wiederum ist ein Telekommunikationsnetz (nach Satz 1), welche die Erbringung von öffentlich zugänglicher Telekommunikationsdiensten im Sinne der Übertragung von Informationen von Netzabschlusspunkten dienen. Ein Netzabschlusspunkten wiederum ist der physische Punkt an welchem ein Endnutzer, also eine natürliche oder juristische Person, die einen öffentlich zugänglichen Telekommunikationsdienst für private oder geschäftliche Zwecke in Anspruch nimmt und weder öffentliche Telekommunikationsnetze betreibt noch öffentlich zugängliche Telekommunikationsdienste erbringt.\footnote{
+                \footcite[Vgl. §3 Nummer 13, 32, 41, 42, 61 und 65][]{TKG}
+            }
 
             \subsubsection{Kritische Komponente}
-            Eine kritische Komponente definiert sich aus verschiedenen Bestandteilen. Zunächst muss fundamental der Begriff des elektronischen Kommunikationsnetzes definiert werden. Dies ist eine einzelne oder eine Gruppe aus aktiven oder passiven Ressourcen, welche, unabhängig des Mediums, zur Übertragung von Signalen zum Austausch von Informationen verwendet werden (Vgl. Art. 2, Buchstabe a Richtlinie 2002/21/EG). Dies wiederum ist Bestandteil der Definition von Netz- und Informationssystemen. Fokussiert man sich zunächst auf den Begriff des Informationssystems kann man dies als Gruppe von Anwendungen, Diensten, informationstechnischen Anlagen oder anderen Komponenten für die Informationsverarbeitung definieren (Vgl. S. 5 27000-2018). Allgemein gültiger ist ein Informationssystemen eine Vorrichtung oder die Gruppe von Vorrichtungen, welche die automatische Datenverarbeitung unter Grundlage eines Programmes durchführt. Somit definiert sich das Netz- und Informationssystemen aus der Definition von elektronischen Kommunikationsnetzen und Informationssysteme, sowie den Daten, welche zum Zweck des Betriebes eines elektronisches Kommunikationsnetz oder Informationssystem gespeichert, verarbeitet, abgerufen oder übertragen werden (Vgl. Art. 4 Nummer 1, Richtlinie (EU) 2016/1148).
+            Eine kritische Komponente definiert sich aus verschiedenen Bestandteilen. Zunächst muss fundamental der Begriff des elektronischen Kommunikationsnetzes definiert werden. Dies ist eine einzelne oder eine Gruppe aus aktiven oder passiven Ressourcen, welche, unabhängig des Mediums, zur Übertragung von Signalen zum Austausch von Informationen verwendet werden. Dies wiederum ist Bestandteil der Definition von Netz- und Informationssystemen. Fokussiert man sich zunächst auf den Begriff des Informationssystems kann man dies als Gruppe von Anwendungen, Diensten, informationstechnischen Anlagen oder anderen Komponenten für die Informationsverarbeitung definieren. Allgemein gültiger ist ein Informationssystemen eine Vorrichtung oder die Gruppe von Vorrichtungen, welche die automatische Datenverarbeitung unter Grundlage eines Programmes durchführt. Somit definiert sich das Netz- und Informationssystemen aus der Definition von elektronischen Kommunikationsnetzen und Informationssysteme, sowie den Daten, welche zum Zweck des Betriebes eines elektronisches Kommunikationsnetz oder Informationssystem gespeichert, verarbeitet, abgerufen oder übertragen werden. Eine kritischen Komponente wiederum ist ein \gls{ikt-produkt}. Dies ist ein ein Element oder eine Gruppe aus Elementen eines Netz- und Informationssystem. Kritisch wird die Komponente dadurch das diese in einer kritischen Anlagen eingesetzt und unter Grundlage des \gls{nis2umsucg} als kritische Komponente bestimmt wird oder eine kritische Funktion realisiert.\footnote{
+                \footcite[Vgl. §2 Nummer 23][]{NIS2UmsuCG}
+                \footcite[Vgl. Artikel 4, Nummer 1][]{EU2016-1148}
+                \footcite[Vgl. Artikel 2, Buchstabe a][]{EU2002-21-EG}
+                \footcite[Vgl. Artikel 2, Nummer 12][]{EU2019-881}
+                \footcite[Vgl. S. 5][]{iso27000-2018}
+            }
 
-            Eine kritischen Komponente wiederum ist ein Informations- und Kommunikationstechnik Produkt (IKT-Produkt). Dies ist ein ein Element oder eine Gruppe aus Elementen eines Netz- und Informationssystem (Vgl. Art. 2  Nummer 12  der  Verordnung  (EU) 2019/881). Kritisch wird die Komponente dadurch das diese in einer kritischen Anlagen eingesetzt und unter Grundlage des NIS-2-Umsetzungs- und Cybzersicherheitsstärkungsgesetz (NIS2UmsuCG) als kritische Komponente bestimmt wird oder eine kritische Funktion realisiert (Vgl. §2 Nummer 23).
-            
-        \subsection{Anforderungen der Europäischen Union}
-            \emph{Hinleitung an die für die Arbeit relevanten Richtlinien und Anforderungen, welche aus der Mitgliedschaft hervorgehen.}
-            \subsubsection{Vertrag über die Arbeitsweise der Europäischen Union (Konsolidierte Fassung)}
-                \emph{Herleitung des Systems der Richtlinien, welche die Europäische Union erlässt sowie mögliche Sanktionen wenn diese nicht eingehalten werden. Daraus ergibt sich der Kontext warum schnellstmöglich fertige nationale Rechtssprechungen erforderlich sein werden.}
-            \subsubsection{Richtlinie (EU) 2022/2555}
-                \emph{Herleitung seit wann die Richtlinie besteht sowie der Zeitpunkt seit dem diese als nationales Recht umgesetzt sein müsste. Ebenfalls Bezug auf das nationale Recht bzw. den Gesetzesentwurf zu NIS2 und den Hauptfokus (Informationssicherheit) dieser Richtlinie.}
-            \subsubsection{Richtlinie (EU) 2022/2557}
-            \emph{Herleitung seit wann die Richtlinie besteht sowie der Zeitpunkt seit dem diese als nationales Recht umgesetzt sein müsste. Ebenfalls Bezug auf das nationale Recht bzw. den Gesetzesentwurf zu KRITIS und den Hauptfokus (physische Resilienz) dieser Richtlinie.}
+            \subsubsection{Risikomanagement}
+
+            \subsubsection{Sicherheitsvorfall}
+            \emph{auch erheblich....}
         
-        \subsection{NIS-2-Umsetzungs- und Cybersicherheitsstärkungsgesetz}
-        \subsubsection{Wer ist betroffen?}
-        Nach dem Gesetzentwurf der Bundesregierung vom 22.07.2024 sind vom NIS-2-Umsetzungs- und Cybzersicherheitsstärkungsgesetz (NIS2UmsuCG) privatwirtschaftliche Unternehmen, welche als Besonders wichtige oder wichtige Einrichtungen gelten, betroffen (Vgl. §28 Absatz 1, 2, 3 \& 7). Zusätzlich gelten Einrichtungen der Bundesverwaltung, welche Bundesbehörden, öffentlich-rechtlich organisierte IT-Dienstleister der Bundesverwaltung und weitere Organe der Bundesbehörden sind, als besonders wichtige Einrichtungen (Vgl. §29 Absatz 2). Weitere Organe der Bundesbehörden sind als Einrichtungen der Bundesverwaltung anzusehen, sofern diese in Einvernehmen zwischen dem Bundesamt für Sicherheit in der Informationstechnik (BSI) und dem Bundesressort als Einrichtungen der Bundesverwaltung deklariert werden (Vgl. §29 Absatz 1 Satz 3). Einrichtungen der Bundesverwaltung sind von Durchsetzungsmaßnahmen, Bußgeldern sowie Meldungen zu Vorfällen ausgeschlossen (Vgl. §29 Absatz 3).
+        \subsection{NIS-2-Umsetzungs- und Cybersicherheitsstärkungsgesetz (NIS2UmsuCG)}
+            \subsubsection{Betroffene Organisationen und Subjekte}
+            \subsubsection{Zuständige Aufsichtsbehörden}
+            \subsubsection{Erforderliche Maßnahmen}
+                Im Rahmen von \gls{nis2umsucg} sind diverse Maßnahmen beschrieben, welche betroffene Einrichtungen umsetzen müssen. Darüberhinaus gibt es mit der \emph{Durchführungsverordnung (EU) 2024/2690} definierte Anforderungen an Maßnahmen in Hinsicht auf die technischen und methodischen Anforderungen von \gls{dns}-Diensteanbieter, \gls{tld}-Namenregister, Anbieter von Cloud-Computing-Diensten, Anbieter von Rechenzent­rumsdiensten, Betreiber von \gls{cdn}, Anbieter verwalteter Dienste, Anbieter verwalteter Sicherheitsdienste, Anbieter von Online-Marktplätzen, Online-Suchmaschinen und Plattformen für Dienste sozialer Netzwerke und Vertrauensdiensteanbieter. Der Folgende Abschnitt Spiegelt sämtliche Anforderungen, welche aus dem \gls{nis2umsucg} sowie der Durchführungsverordnung hervorgehen. Ebenfalls werden alle von \gls{nis2umsucg} und der Durchführungsverordnung betroffenen Organisationen und Subjekte einheitlich als betroffene Einrichtungen bezeichnet. Zunächst wird der Fokus ausschließlich auf den Theoretischen Rahmen gesetzt, jedoch in allen dienlichen Fällen Bezug auf den entsprechenden Abschnitt der praktischen Maßnahmen, beschrieben in Abschnitt \ref{sec:ParktischeMaßnahmen}, genommen.\footnote{
+                    \footcite{MISSING}
+                }\medbreak
+                
+                Sämtliche beschriebene Anforderungen der \emph{Durchführungsverordnung (EU) 2024/2690} sind in aller Regel in einem zu definierenden Turnus zu Überprüfen und das Ergebnis zu dokumentieren, spätestens jedoch nach einem erheblichen Sicherheitsvorfall, einer erneuten Risikobewertung oder aber der wesentlichen  Änderungen  der  Betriebsabläufe.\medbreak
 
-        Als besonders wichtige Einrichtung gilt man, wenn man Betreiber einer kritischen Anlage ist (Vgl. §28 Absatz 1 Nummer 1). 
+                % ISMS ↓
 
-        Eine kritische Anlage ist eine Anlage, welche für die Erbringung einer kritischen Dienstleistung erheblich ist. Eine kritische Dienstleistung wiederum ist eine Dienstleistung zu Versorgung der Allgemeinheit, dessen Ausfall oder Beeinträchtigung erhebliche Versorgungsengpässe oder die öffentlichen Sicherheit gefährden würde. Kritischen Dienstleistungen in den Sektoren Energie, Transport und Verkehr, Finanzwesen, Sozialversicherungsträger sowie Grundsicherung für Arbeitssuchende, Gesundheitswesen, Wasser, Ernährung, Informationstechnik und Telekommunikation, Weltraum und Siedlungsabfallentsorgung sind durch das Bundesministerium des Innern und für Heimat in Einvernehmen mit den jeweiligen Bundesressorts durch Rechtsverordnungen zu bestimmen (Vgl. §2 Nummer 22 und 24 sowie §56 Absatz 4).
+                Teil der zu ergreifenden Maßnahmen ist ein \emph{Konzept für die Sicherheit von Netz- und Informationssystemen} sowie darin enthaltenen themenspezifischen Konzepte, welche sich auf die betroffene Einrichtung beziehen. Zentraler Bestandteil ist die Festlegung der Verantwortlichkeiten sowie Weisungsbefugnisse hinsichtlich der Sicherheit von Netz- und Informationssysteme. Diese Festlegung wird ebenfalls den Leitungsorganen mitgeteilt, sodass ein einheitliches Verständnis der definierten Verantwortlichkeiten und Weisungsbefugnisse herrscht. Sofern es möglich ist sollen wiedersprechende Verantwortlichkeiten vermieden werden. Zusätzlich muss im selben Rahmen eine Person definiert werden, welche den Leitungsorganen gegenüber als Ansprechpartner für Fragen bezüglich der Sicherheit von Netz- und Informationssystemen verantwortlich ist. Das Konzept an sich muss diverse Themengebiete abdecken. Ein Kernapsekt ist die Beschreibung des Ansatzes des Managements der Sicherheit in Netz- und Informationssystemen. In diesem Kontext bezieht sich Management auf die Verwaltung der Verfahren und Regeln für die Sicherheit in Netz- und Informationssystemen. Wichtig ist das die Geschäftsstrategie durch das Konzept ergänzt und für die Unternehmerischen Ziele geeignet sind. Ebenfalls ist ein Konzept genau wie die Einrichtung nicht statisch sondern dynamisch. Daher bedarf es einer Verpflichtung im Rahmen des Konzeptes dieses Kontinuierlich zu verbessern und erweitern. Ebenfalls bedarf es einer Verpflichtung die Ressourcen für die eingangs beschriebenen Rollen sowie damit verbundenen Finanzen, Verfahren, Instrumente und Technologien bereitzustellen. Diese Festgelegten Rollen sind ebenfalls Teil des Konzeptes. Zusätzlich sind sämtliche betroffenen aufzubewahrenden Unterlagen und die Dauer ihrer Aufbewahrung aufführen. Im Kontext der \gls{brd} sind hier unter anderem die \gls{ao}, das \gls{hgb} sowie die \gls{gobd} maßgeblich. Abschließend muss entsprechend beschrieben sein wie die Wirksamkeit hinsichtlich der Umsetzung des Konzeptes überwacht wird. Das Konzept an sich muss allen betroffenen Mitarbeitern sowie interessierten externen Beteiligten verfügbar gemacht werden. Ebenfalls ist dies durch diese Personengruppen anzuwenden. \footnote{
+                    \footcite[Vgl. Anhang, Nummer 1][]{EU2024-2690}
+                    \footcite[Referenz für Unternehmen die sich Wandeln][]{MISSING}
+                }\medbreak
 
-        Betreiber einer kritische Anlage ist eine natürliche oder juristische Person sowie unselbständige Organisationseinheit einer Gebietskörperschaft wenn diese bestimmenden Einfluss auf eine oder mehrere kritische Anlagen ausübt. Hierbei werden die rechtlichen, wirtschaftlichen und tatsächlichen Umstände betrachtet. Somit könne beispielsweise IT-Dienstleister, welche die Informationstechnische Infrastruktur einer kritischen Dienstleistung verwaltet, als Betreiber kritischer Anlage gesehen werden, da diese bestimmenden Einfluss unter Betrachtung der tatsächlichen Umstände auf die kritische Dienstleistung haben.
+                % Risikomanagement ↓
 
-        Zusätzlich gelten qualifizierte Vertrauensdiensteanbieter, Top Level Domain Name Registries oder DNS- Diensteanbieter als besonders wichtige Einrichtung. Wenn ein Anbieter öffentlich zugängliche Telekommunikationsdienste oder Telekommunikationsnetze anbietet und mindestens 50 Mitarbeiter Beschäftig, oder einen Jahresumsatz sowie eine Jahresbilanzsumme von mindestens 10 Mio. Euro aufweist, gilt dieser ebenfalls als besonders wichtige Einrichtung (Vgl. §28 Absatz 1 Satz 2 \& 3).
+                Darüberhinaus ist Risikomanagement ist ein wichtiger Aspekt eines jeden Unternehmens. Risiken müssen kontinuierlich Identifizierung, Analysiert, Bewertet, Bewältigt und überwacht werden. So ist auch ein \emph{Konzept für das Risikomanagement} Teil der Maßnahmen des \emph{Durchführungsverordnung (EU) 2024/2690} sowie des \gls{nis2umsucg}. Ein Essenzieller Kernaspekt ist die Tatsache das sich das Risikomanagement für die Sicherheit von Netz- und Informationssystemen im Einvernehmen mit dem ganzheitlichen Risikomanagement der betroffenen Einrichtung befindet. Bestandteile des Risikomanagement sind der Risikomanagementprozess zur Identifizierung, Analyse, Bewertung, Bewältigung und Überwachung von Risiken hinsichtlich der Sicherheit von Netz- und Informationssystemen. Hierbei werden Risikomanagementmethodiken auf die ermittelten Risiken angewendet um eine Risikostrategie abzuleiten. Eine Zentrale Rolle spielt die Risikoüberwachung sowie die Risikokommunikation. Formal ist es erforderlich für den Risikomanagementprozess Verfahren zu definieren die Risikomanagementmethodiken sowie die Risikotoleranzschwelle im Einklang mit der Risikobereitschaft umfassen. Der zuvor beschriebene kontinuriliche Prozess der Identifizierung, Analyse, Bewertung und Behandlung von Risiken beinhaltet ebenfalls die Risikokriterien, welche ebenfalls für die Überwachung und eine kontinuriliche Verbesserung herangezogen werden. Neben den Verfahren zur Bewertung von Risiken und den entsprechend daraus folgenden Maßnahmen sind ebenfalls Verfahren zu definieren, welche Personen die Verantwortlichkeit für die Terminierte Umsetzung der Maßnahmen zuordnet. Zusätzlicher Bestandteil des Risikomanagement für die Sicherheit von Netz- und Informationssystemen ist die regelmäßige und unabhängige Überprüfung der \emph{Konzept für die Sicherheit von Netz- und Informationssystemen} inklusive geeigneter Systeme zur Berichterstattung der Ergebnisse für die Leitungsorganen. Diese sollen somit einen fundierten Überblick über den aktuellen Stand des Risikomanagements abrufen können.\footnote{
+                    \footcite[Vgl. Anhang, Nummer 2][]{EU2024-2690}
+                    \footcite[Risikomanagement in Unternehmen allgegenwärtig][]{MISSING}                
+                }\medbreak
 
-        Darüberhinaus sind Unternehmen, welche mindestens 250 Mitarbeiter beschäftigen oder einen Jahresumsatz von 50 Mio. Euro und Jahresbilanzsumme von 43 Mio. Euro aufweisen, ebenfalls als besonders wichtige Einrichtungen anzusehen, wenn diese in einem der unter Anhang 1 beschriebenen Bereiche fallen (Vgl. §28 Absatz 1 Nummer 4).
+                % Protokollierung, Sicherheitsvorfälle & Monitoring ↓
 
-        Ist ein Unternehmen nicht als besonders wichtige Einrichtung klassifiziert ist es durchaus möglich das dies als wichtige Einrichtung gilt. Dies liegt dann vor wenn das Unternehmen ein Vertrauensdiensteanbieter ist, oder alternativ Anbieter öffentlich zugängliche Telekommunikationsdienste oder Telekommunikationsnetze mit weniger als 50 beschäftigten sowie ein Jahresumsatz und Jahresbilanzsumme von weniger als 10 Mio. Euro aufweist . Unternehmen die unter die Beschreibung in Anhang 1 und Anhang 2 fallen sind wichtige Einrichtung wenn mindestens 50 Mitarbeiter Beschäftig, oder einen Jahresumsatz sowie eine Jahresbilanzsumme von mindestens 10 Mio. Euro vorliegt (Vgl. §28 Absatz 2).
+                Ein Teilaspekt des Risikomanagement ist die prevention von Sicherheitsvorfällen. Nicht jeder Sicherheitsvorfall lässt sich präventiv vermeiden, weswegen Verfahren zur \emph{Bewältigung von Sicherheitsvorfällen} ein erforderlicher Teil der Maßnahmen ist. Vorhergehend ist das Konzept zur Bewältigung von Sicherheitsvorfällen. In diesem werden Rollen, Verantwortlichkeit und Verfahren für die zeitnahe Erkennung, Analyse, Eindämmung oder Reaktion auf Sicherheitsvorfälle sowie die Wiederherstellung nach einem Sicherheitsvorfall festgelegt. Wie ein Sicherheitsvorfall zu Melden und bei Bedarf zu eskalieren ist, ist ebenfalls Bestandteil des Konzeptes. Einem Sicherheitsvorfall vorangestellt ist ein Ereignis. Dieses muss zunächst auf Basis eines Kategorisierungs- und Klassifizierungssystems als Sicherheitsvorfall eingestuft werden. Diese beiden Aspekte sind entsprechend ebenfalls Bestandteil des Konzeptes. Damit die Vorgehen widerspruchsfrei sind werden sämtliche Dokumente, wie Verfahren, Anleitungen, Vorlagen und der gleichen ebenfalls als Teil des Konzeptes mit aufgefasst. Dieses Konzept muss entsprechend im Einklang mit dem Notfallplan für die Aufrechterhaltung und Wiederherstellung des Betriebs der Einrichtung stehen. Damit Ereignisse leichter erkannt werden können sind Verfahren und Instrumente für die Überwachung und Protokollierung von Aktivitäten in den Netz- und Informationssystem zu implementieren. Diese funktionieren soweit möglich automatisch und basieren auf einem einheitlichen Zeitgeber, sodass die Protokolle aus diversen Systemen in eine Korrelation gebracht werden können. Hierbei ist die Überwachung und Protokollierung nur auf Systeme anzuwenden, welche per Definition gemäß der Anlagen und Werte auf Basis der Risikobewertung ein entsprechendes Vorgehen erforderlich machen. Die angefertigten Protokolle werden entsprechend eines definierten Zeitraumes Archiviert. Die Protokolle umfassen die folgenden Ereignisse:\footnote{
+                    \footcite[Vgl. Anhang, Nummer 3.1 - 3.2.3, 3.2.5 \& 3.2.6][]{EU2024-2690}
+                    \footcite[Risikomanagement soll Sicherheitsvorfällen präventiv vermeiden][]{MISSING}
+                    \footcite[Sicherheitsvorfälle kann man nicht immer vermeiden][]{MISSING}
+                }
+                \begin{itemize}
+                    \item Logischer und physikalischer Zugang (Ein- und Ausgehend)
+                    \item Ereignisprotokolle und Protokolle von Sicherheitslösungen wie beispielsweise Firewalls oder Endpunktsicherheitslösungen
+                    \item Erstellen, Ändern und Löschen sowie Erweiterung der Rechte von Benutzerkonten
+                    \item Zugriffe auf Systeme und Anwendungen sowie die Berechtigungsstufe (privilegierter Zugriff)
+                    \item Ereignisse mit Bezug auf Authentifizierung
+                    \item Sämtliche Aktivitäten in Bezug auf privilegierte Benutzerkonten (Verwaltungskonten)
+                    \item Ereignisse des Umfelds der Systeme
+                    \item Systemressourcen
+                    \item Aktivierung, Beendigung und Pausieren der verschiedenen Protokolle
+                \end{itemize} 
+                Diese Protokolle werden regelmäßig auf Trends untersucht und es werden auf Basis geeigneter Schwellwerte Alarme ausgelöst. Ereignisse können auch durch Meldung Dritte, beispielsweise Personal, Kunden oder aber auch Anbieter, erfolgen. Hierzu ist ein entsprechender Mechanismus bereitzustellen und, bei Bedarf, die Betroffenen Personen zu unterrichten. Sowohl bei automatisiert (Protokollierung) erfassten als auch bei manuell (Meldung) erfassten Ereignissen sind Vorgehen erforderlich um zu ermittelten ob bei dem Ereignis ein Sicherheitsvorfall vorliegt. Für diese Feststellung ist ein Vorgehen zu definieren, welches die Bewertung auf Grundlage festgelegt Kriterien ermöglicht. Diese Kriterien bieten dann die Möglichkeit auf Basis von Meldungen oder Protokollen sowie die Korrelation und Analyse von Protokollen ein Ereignis zu Bewerten und bei Bedarf als Sicherheitsvorfall einzustufen. Ebenfalls Teil des Vorgehens sind die Durchführung einer Triage um die Gesamtheit der Eindämmung und Beseitigung der Sicherheitsvorfälle zu priorisieren. Auch eine erneute Bewertung von Ereignissen ist vorgesehen, etwa dann wenn neue Informationen vorliegen oder bereits vorliegende Informationen dies erforderlich machen. Eine vierteljährliche Bewertung ob wiederholte Ereignisse vorliegen ist der Abschließende Bestandteil der zu definierenden Vorgehen. Hiermit sollen kumuliert sich wiederholende Ereignisse betrachtet werden um diese ebenfalls als Sicherheitsvorfall einstufen zu können. Wird ein Ereignis als Sicherheitsvorfall klassifiziert ist dies Zeitnahe und gemäß Dokumentierter Verfahren in den drei Phasen der Eindämmung, Beseitigung und Wiederherstellung zu bearbeiten. Ein essenzieller Bestandteil ist die erstellung von Plänen und verfahren zur Kommunikation mit dem \gls{csirt} oder den zuständigen Behörden im Zusammenhang mit der Meldung von Sicherheitsvorfällen. Auch die in- und externen Kommunikationswege für Personal und Interessenträger außerhalb der Einrichtung ist ein Wichtiger Bestandteil. Jegliche Reaktion sowie die Tätigkeiten im Zusammenhang mit einem Sicherheitsvorfall sind zu Dokumentieren und diese Verfahren gilt es ebenfalls zu Überprüfen. Alle Sicherheitsvorfälle müssen Abschließend hinsichtlich ihrer Ursachen überprüft werden um diese in Zukunft zu vermeiden und bei Bedarf Schulungsmaßnahmen aus diesem Sicherheitsvorfall abzuleiten. Sämtliche Überprüfung, auch die Überprüfung ob ein Sicherheitsvorfall abschließend überprüft wurde, dienen dem Zwek der kontinuierlichen verbesserung. Dies beschränkt sich in dem Fall nicht ausschließlich auf das Konzept zur \emph{Bewältigung von Sicherheitsvorfällen}, sondern auch auf alle erforderlichen Maßnahmen wie beispielsweise das \emph{Risikomanagement}.\footnote{
+                    \footcite[Vgl. Anhang, Nummer 3.2.4 \&1 3.3 - 3.6.2][]{EU2024-2690}
+                    \footcite[Vgl. Artikel 4][]{EU2024-2690}
+                }\medbreak
 
-        Bei besonders wichtigen sowie wichtigen Einrichtungen wird für die Ermittlung der Mitarbeiterzahlen, Jahresumsatz sowie Jahresbilanzsumme nicht ausschließlich das Unternehmen an sich betrachtet, vielmehr werden Partner- oder verbundenen Unternehmen mit derselben Geschäftstätigkeit konsolidiert bewertet (§28 Absatz 3, 2003/361/EG Artikel 6 Absatz 2 und 9783946702207 "abstellen"). Hierzu ist es erforderlich das unter Anbetracht der rechtlichen, wirtschaftlichen und tatsächlichen Umstände die Unternehmen in Hinsicht auf die Beschaffenheit und den Betrieb der informationstechnischen Systeme, Komponenten und Prozesse voneinander nicht unabhängig sind.
+                Um den Betrieb während eines Sicherheitsvorfalls zu gewährleisten ist ein entsprechender Notfallplan erforderlich. Dieser ist Teil des \emph{Betriebskontinuitäts- und Krisenmanagement}. Hiermit soll nicht nur die Aufrechterhaltung sondern auch die Wiederherstellung des Betriebs sichergestellt werden. Konkret umfasst der Notfallplan auf Basis der Risikobewertung zunächst einmal den Zweck, Umfang und die Zielgruppe des Plans. Um im Notfall klar definierte Rollen und Verantwortlichkeit definiert zu wissen ist dies ebenfalls Bestandteil des Notfallplan. Neben der Reihenfolge der Wiederherstellung der Betriebsabläufe sind auch die hierfür erforderlichen Ressourcen, einschließlich Sicherungen und Redundanzen, Bestandteil des Plans. Damit Kommunikationskanäle klar definiert sind werden alle wichtige Kontaktangaben und (interne und externe) Kommunikationskanäle ebenfalls Dokumentiert. Zusätzlich sind die Informationen unter welchen Bedingungen der Notfallplan aktiviert- und wieder deaktiviert werden kann essenziell für dessen Anwendung. Diese Definitionen Bilden den Notfallplan für die jeweilige Einrichtung. Eine regelmäßige Erprobung ist ebenfalls Bestandteil des \emph{Betriebskontinuitäts- und Krisenmanagement}. Zur Gewährleistung einer Entsprechender Resilienz sind auf Basis der Auswirkung einer Störung auf die Betriebsabläufe die Kontinuitätsanforderungen für die Netz- und Informationssysteme abzuleiten. Aus den Kontinuitätsanforderungen kann man wiederum das anfertigen von Sicherungskopien Ableiten. Auch das erstellen von Sicherungspläne auf Basis der Risikobewertung und des Betriebskonti­nuitätsplans sind Teil der Maßnahmen des \emph{Betriebskontinuitäts- und Krisenmanagement}. In jedem fall enthält ein Sicherungspläne die Wiederherstellunggszeit sowie das vorgehen bei Wiederherstellung, Aufbewarhungsfristen, Integritätsprüfungen, phyische und logische Zugangskontrolle entsprechender Klassifizierunggsstufen der Anlagen und Werte sowie den Speicherort. Der Speicherort ist entsprechend so zu wählen das bei einem Ausfall der zu sichernden Systeme die Sicherungskopien nicht betroffen sein können. Ebenfalls ist bei den Aufbewarhungsfristen Regulatorische Anforderungen zu beachten, wie diese beispielsweise aus der \gls{ao} hervorgehen. Unabhängig der Kontinuitätsanforderungen sind der Risikobewertung entsprechende Netz- und Informationssysteme, Kommunikationskanäle sowie Anlagen und Werte redundant oder teilweise redundant auszulegen. Auch Personal muss hinsichtlich der Verantwortlichkeit, Weisungsbefugnis und Kompetenz entsprechend resilient sein. Für schwerwiegende Ereignisse sind Verfahren für das Krisenmanagement zu etablieren. Diese umfassen mindestens die Rollen und Verantwortlichkeiten des Personals und der Anbieter sowie die geeignete Kommunikationsmittel zwischen den betreffenden Einrichtungen  und den jeweils zuständigen Behörden. Ebenfalls sind die Maßnahmen zur Gewährleistung der Aufrechterhaltung der Sicherheit von Netz- und Informationssystemen in Krisensituationen fundamentaler Bestandteil des Krisenmanagement. Einhergehend mit dem \emph{Konzept für das Risikomanagement} sind die Verfahren zur Verwaltung von Informationen über Sicherheitsvorfälle, Schwachstellen, Bedrohungen oder mögliche Risikominderungsmaßnahmen, welche ebenfalls dem \emph{Betriebskontinuitäts- und Krisenmanagement} zuzuordnen sind.\footnote{
+                    \footcite[Vgl. Anhang, Nummer 4][]{EU2024-2690}
+                    \footcite[Vgl. Artikel 22, Absatz 1][]{EU2022-25555}
+                }\medbreak
 
-        [§56 Abs. 4]
+                Ein wesentlicher Bestandteil externer Einflüsse sind die Lieferketten. Dementsprechend ist es erforderlich ein dienliches Konzept für \emph{Sicherheit der Lieferkette} Aufzuweisen. Zusätzlich ist es essenziell die eigene Rolle und die Beziehung zu direkten Anbietern und Diensteanbietern zu evaluieren und sich dieser Bewusst zu werden.Kernforderung an das Konzept für \emph{Sicherheit der Lieferkette}  ist die Definition von Kriterien für die Auswahl von Anbietern und Diensteanbietern sowie die Auftragsvergabe. Hierbei ist es wichtig das die Lieferanten Cybersicherheitsverfahren einschließlich der Sicherheit ihrer Entwicklungsprozessen etabliert haben. Die allgemeine Qualität und Resilienz der angebotenen und entwickelten IKT-Produkte und -Dienste sowie Risikomanage­mentmaßnahmen im Bereich der Cybersicherheit sind ebenfalls ein wichtiger Bestandteil des Konzeptes. Zur Vermeidung von Abhängigkeiten soll zusätzlich Wert auf die Fähigkeit die Versorgungsquellen zu diversifizieren und Abhängigkeit von bestimmten Anbietern gelegt werden. Unter Rücksichtnahme von Risikobewertungen zur \emph{Sicherheit der Lieferkette}  aus der Zusammenarbeit von Kooperationsgruppe mit der Europäischen Kommission und der \gls{enisa} bildet dies die Anforderungen an das Konzept für \emph{Sicherheit der Lieferkette} . Für eine fortwährende Geschäftsbeziehung sehen die erforderlichen Maßnahmen vor eine auf Basis der Risikobewertung und im Rahmen der Leistungsverein­barungen mit Anbietern und Diensteanbietern in Form entsprechender Verträgen diverse Aspekte zu Regeln. Bestandteile davon sind die Cybersicherheitsanforderungen an die Anbieter oder Diensteanbieter sowie die Anforderungen an die Sicherheitsmaßnahmen beim Erwerb von IKT-Diensten oder IKT-Produkten. Ebenfalls unterliegen die Mitarbeitenden der Anbieter und Diensteanbieter Sensibilisierungs-, Qualifikations- und Ausbildungsanforderungen. Die Anbieter und Diensteanbieter verpflichten sich ebenfalls Sicherheitsvorfälle, die ein Risiko für die Sicherheit der Netz- und Informationssysteme darstellen, unverzüglich zu melden sowie Schwachstellen zu Beheben, welche ein Risiko für die Sicherheit der Netz- und Informationssysteme darstellen. Für die Unterauftragsvergabe durch den Anbieter und Diensteanbieter entstehen Cybersicherheitsanforderungen an Unterauftragnehmer, welche mit den Cybersicherheitsanforderungen an den Anbieter und Diensteanbieter vergleichbar sein können. Darüberhinaus werden sämtliche andere Pflichten der Anbieter und Diensteanbieter im Rahmen der Verträge zur Leistungsverein­barungen definiert. Diese zwei wesentlichen Komponenten sollen unmittelbar die \emph{Sicherheit der Lieferkette} gewährleisten. Geschäftsbeziehungen sind dynamisch und können sich wandeln. Daher müssen die Maßnahmen für die \emph{Sicherheit der Lieferkette} überwacht werden. Hierzu zählen, soweit Anwendbar, die durch den Anbietern und Diensteanbietern zu erstellenden Berichte über die Umsetzung der Leistungsvereinbarungen. Ebenfalls sollen Sicherheitsvorfälle im Zusammenhang mit IKT-Produkten und -Diensten von Anbietern und Diensteanbietern überprüft und Risiken, die sich aus Änderungen im Zusammenhang mit IKT-Produkten und -Diensten von Anbietern und Diensteanbietern ergeben, analysieren und falls erforderlich Maßnahmen ergreifen werden. Zusätzlich soll überprüft werden ob eine außerplanmäßiger Überprüfungen notwendig ist und sofern dieser Fall eintritt ist die Prüfung nachvollziehbar zu Dokumentieren. Für eine Übersicht ist ein Verzeichnis der direkten Anbieter und Diensteanbieter mit Kontaktstellen und eine Liste mit bereitgestellten IKT-Produkte, -Dienste und -Prozesse zu erstellen und pflegen.\footnote{
+                    \footcite[Vgl. Anhang, Nummer 5][]{EU2024-2690}
+                    \footcite[Geschäftsbeziehungen sind dynamisch][]{MISSING}
+                }\medbreak
 
-        \subsubsection{Was müssen betroffene umsetzen?}
-        Besonders wichtige und wichtige Einrichtungen sind dazu verpflichtet technische und organisatorische Maßnahmen umzusetzen, welche die Verfügbarkeit, Integrität und Vertraulichkeit der informationstechnischen Systeme, Komponenten und Prozesse gewährleisten soll. Hierbei liegt der Fokus auf den Komponenten, welche zur Erbringung der kritischen Dienstleistungen erfolgreich sind. Somit soll darüberhinaus die Auswirkung Sicherheitsvorfällen möglichst gering gehalten werden. Die Umzusetzenden Maßnahmen sollen entsprechend verhältnismäßig sein. Die Bewertung der Verhältnismäßigkeit betrachtet
-        \begin{enumerate}
-            \item Risikoexposition
-            \item Größe der Einrichtung
-            \item Umsetzungskosten
-            \item Eintrittswahrscheinlichkeit
-            \item Schwere von Sicherheitsvorfällen
-            \item gesellschaftliche und wirtschaftlichen Auswirkungen
-        \end{enumerate}
+                \paragraph{Sicherheitsmaßnahmen bei Erwerb,  Entwicklung und Wartung von Netz-  und Informationssystemen} Lore Ipsum
+                
+                \paragraph{Konzepte und Verfahren zur Bewertung der Wirksamkeit von Risikomanagementmaßnahmen im Bereich der Cybersicherheit} Lore Ipsum
+                
+                \paragraph{Grundlegende Verfahren im Bereich der Cyberhygiene und Schulungen im Bereich der Cybersicherheit } Lore Ipsum
+                
+                \paragraph{Kryptografie} Lore Ipsum
+                
+                \paragraph{Sicherheit des Personals} Lore Ipsum
+                
+                \paragraph{Zugriffskontrolle} Lore Ipsum
+                
+                \paragraph{Anlagen- und Wertemanagement} Lore Ipsum
+                
+                \paragraph{Sicherheit des Umfelds und physische Sicherheit} Lore Ipsum
+                
+            \subsubsection{Registrierungs- und Meldewesen}
+            \subsubsection{Risiken und Sanktionen}
 
-        Zusätzlich ist zu Bewertung der Verhältnismäßigkeit für Betreiber kritischer Anlagen die Beeinträchtigung oder der Ausfall dieser zu betrachten. Somit gilt der Aufwand als verhältnismäßig sobald eine Beeinträchtigung oder der Ausfall der Anlage gravierender ist als tie tatsächliche Umsetzung verhütender technischer und organisatorischer Maßnahmen. (§31 Abs. 1)
+        \subsection{KRITIS-Dachgesetz (KRITIS-DachG)}
+        Das \gls{kritis-dachg} soll die physische Resilienz von Betreibern kritischer Einrichtungen Regeln. Hierbei gibt das \gls{kritis-dachg} Resilienzziele, Orientierung und eine Übersicht von beispielhaften Maßnahmen vor. Entgegen dem \gls{nis2umsucg} liegt hier der Fokus auf die nicht-IT-bezogene Maßnahmen zur Stärkung der Resilienz dieser Einrichtungen.
+            \subsubsection{Betroffene Organisationen und Subjekte}
+            \subsubsection{Zuständige Aufsichtsbehörden}
+            \subsubsection{Erforderliche Maßnahmen}
+            \subsubsection{Registrierungs- und Meldewesen}
+            \subsubsection{Risiken und Sanktionen}
 
-        Unter anderem ist einer der zentralen Aspekte das die Umsetzungen auch entsprechend Dokumentiert sein müssen (Vgl. §30 Abs. 1). Besonders wichtig ist dies für Betreiber kritischer Anlagen, da dies verpflichtet sind die Umsetzungen dem BSI im Turnus von drei Jahren verfügbar zu machen. Nachgewiesen wird die Umsetzung durch Sicherheitsaudits, Prüfungen oder Zertifizierungen (§39 Abs. 1).
 
-        Die ergriffenen Maßnahmen sollen den Stand der Technik einhalte. Dies ermöglicht man indem einschlägige europäische und internationalen Normen berücksichtigt und ein gefahrenübergreifenden Ansatz betrachtet wird. Ein gefahrenübergreifenden Ansatz bedeutet in diesem Kontext das Informationssicherheit nicht als Insel sondern gesamtheitliches Konzept zu sehen ist. Bei Lieferketten sind entsprechend Lieferanten Teil der erforderlichen Risikobetrachtung (Vgl. §30 Abs. 2). 
 
-        Mit [NIS2 Directive - Commission implementing Regulation C(2024) 7151 - ANNEX] wird der entsprechende Rahmen definiert was Umzusetzen ist (§30 Abs. 3, 4 und 5).
-
-        Betreiber kritischer Anlagen müssen zusätzlich Systeme zur Angriffserkennung einzusetzen. Dieses System muss geeignete Parameter und Merkmale aus dem laufenden Betrieb fortwährend und automatisch erfassen und auswerten. Das System soll die Betreiber der kritischen Anlage in die Lage versetzen fortwährend Bedrohungen zu identifizieren sowie zu vermeiden und für eingetretene Störungen geeignete Beseitigungsmaßnahmen vorzusehen. Auch hier gilt hinsichtlich des Aufwandes der Grundsatz der Verhältnismäßigkeit (§31 Abs. 2.).
-
-        Das ganze stützt sich auf der Verpflichtung der Geschäftsleitungen besonders wichtiger und wichtiger Einrichtungen diese Maßnahmen umzusetzen und dessen Umsetzung zu überwachen (§38 Abs. 1). Damit diese in der Lage ist eine entsprechende Umsetzung und dessen Überwachung zu gewährleisten sind regelmäßige Schulungsmaßnahmen für die Geschäftsleitung durchzuführen, sodass diese ausreichende Kenntnisse und Fähigkeiten zur Erkennung und Bewertung von Risiken und Risikomanagementpraktiken im Bereich der Sicherheit in der Informationstechnik erlangt. Hierbei ist es wichtig das diese die Auswirkungen von Risiken sowie Risikomanagementpraktiken auf die von ihrer Einrichtung angebotenen Dienste beurteilen könne (§38 Abs. 3).
-
-        \subsubsection{Melde- und Unterrichtungspflichten}
-        Allgemein sind erhebliche Sicherheitsvorfälle einer vom Bundesamt für Sicherheit in der Informationstechnik (BSI) und Bundesamt für Bevölkerungsschutz und Katastrophenhilfe (BBK) eingerichtete gemeinsame Meldestelle anzuzeigen. 
-
-        Die Allgemeine Ausgestaltung des Verfahrens des melden von Sicherheitsvorfällen sowie dessen Inhalt ist durch das Informationstechnik (BSI) und Bundesamt für Bevölkerungsschutz und Katastrophenhilfe (BBK) festzulegen. Im Rahmen der Festlegung der Durchführungsrechtsakte sollen betroffene Betreiber und Wirtschaftsverbände angehört werden (§32 Abs. 4).  
-
-        Betroffen hiervon sind besonders wichtige oder wichtige Einrichtungen (§32 Abs. 1). Erlangt eine besonders wichtige oder wichtige Einrichtungen Kenntnis über einen erheblichen Sicherheitsvorfall müssen diese spätestens nach 24 Stunden eine Erstmeldung abgeben. Die Erstmeldung soll widerspiegeln ob der Verdacht besteht, dass der erhebliche Sicherheitsvorfall auf rechtswidrige oder böswillige Handlungen zurückzuführen ist oder grenzüberschreitende Auswirkungen haben könnte (§32 Abs. 1).
-
-        Handelt es sich um einen Betreiber kritischer Anlagen und der Sicherheitsvorfall könnte sich auf diese Auswirken, oder hat tatsächlich Auswirkungen, sind zusätzlich Angaben zu der Art der Betroffenen kritischen Anlage sowie der kritischen Dienstleistung und der entsprechenden Auswirkung zu tätigen (§32 Abs. 3).
-
-        Binnen 72 Stunden nach Kenntnisnahme eines erheblichen Sicherheitsvorfalles ist die Erstmeldung durch eine Meldung über den Sicherheitsvorfall abzulösen. Hierbei sollen die information zum einen aktualisiert aber auch verifiziert oder falsifiziert werden. Wichtiger Bestandteil der Meldung ist eine erste Bewertung des erheblichen Sicherheitsvorfalles inklusive Schweregrad und Auswirkung sowie die Indikatoren der Komprimierung. Zusätzlich kann das Bundesamt für Sicherheit in der Informationstechnik (BSI) eine Zwischenmeldung einfordern, welche relevante Statusaktualisierungen beinhaltet (§32 Abs. 1 Nummer 2 und 3). 
-
-        Spätestens einen Monat nach Übermittlung der Meldung wird eine Abschlussmeldung gegeben. Die Abschlussmeldung ist eine ausführliche  Beschreibung des Sicherheitsvorfalls, inklusive seines Schweregrads und dessen Auswirkungen sowie Angaben zur Art und Ursache. Relevant sich auch die getroffenen und fortwährenden Abhilfemaßnahmen. Wenn die Auswirkungen grenzüberschreitend sind diese Auswirkungen ebenfalls zu beschreiben (§32 Abs. 4). Sollte der Sicherheitsvorfalls nach einem Monat weiterhin anhalten ist eine Fortschrittsmeldung zu verrichten und die Abschlussmeldung wird erst nach Abschließender Bearbeitung vorgelegt (§32 Abs. 2)
-
-        Der erhalt der getätigten Meldungen werden unverzüglich und, sofern möglich, spätestens nach 24 Stunde vom Bundesamt für Sicherheit in der Informationstechnik (BSI) Bestätigt. Die betroffene Einrichtung kann ebenfalls Orientierungshilfen, operative Beratung oder technische Unterstützung zu Abhilfemaßnahmen durch das Bundesamt für Sicherheit in der Informationstechnik (BSI) erhalten (§36 Abs. 1).
-
-        Nicht nur eine Meldung an das Bundesamt für Sicherheit in der Informationstechnik (BSI) kann bei einem erheblichen Sicherheitsvorfall notwendig sein. Besonders wichtige Einrichtungen und wichtigen Einrichtungen können vom Bundesamt für Sicherheit in der Informationstechnik (BSI) aufgefordert werden die Empfänger ihrer Dienste von einem erheblichen Sicherheitsvorfall zu unterrichten, wenn die entsprechenden Dienste beinträchtig sind. Hier kann eine Publikation auf der eigenen Internetseite der Einrichtung hinreichend sein (§35 Abs. 1).
-
-        Ist die besonders wichtige oder wichtigen Einrichtungen dem Sektor Finanzwesen, Sozialversicherungsträger sowie Grundsicherung für Arbeitssuchende, digitale Infrastruktur, Verwaltung von IKT-Diensten oder Digitale Dienste zuzuordnen sind bereits bei einer erheblichen Cyberbedrohung die Empfänger der entsprechenden Dienste sowie das Bundesamt für Sicherheit in der Informationstechnik (BSI) zu Informieren. Hierbei muss die Einrichtung unverzüglich alle Maßnahmen oder Abhilfemaßnahmen mitteilen, welche die Empfänger als Reaktion auf diese Bedrohung ergreifen können. Ebenfalls ist über die erhebliche Cyberbedrohung selbst zu informieren. Diese pflichten gelten ausschließlich wenn die Interessen des Empfänger die der Einrichtung überwiegen (§35 Abs. 2).
-
-        \subsubsection{Registrierungspflicht}
-        Ebenfalls ist es für besonders wichtige und wichtige Einrichtungen, sowie für Domain-Name-Registry-Diensteanbieter, sich bei einer vom Bundesamt für Sicherheit in der Informationstechnik (BSI) und Bundesamt für Bevölkerungsschutz und Katastrophenhilfe  gemeinsam eingerichteten Registrierungsmöglichkeit zu registrieren. Dies muss binnen drei Monaten, nachdem diese erstmals oder erneut als solche Einrichtung gelten, erfolgen (§33 Abs. 1). Prinzipiell sind die Einzelheiten des Registrierungsverfahrens durch das Bundesamt für Sicherheit in der Informationstechnik (BSI) im einvernehmen mit dem Bundesamt für Bevölkerungsschutz und Katastrophenhilfe festzulegen und über dessen Internetseite zu veröffentlichen (§33 Abs. 6).
-
-        Im Rahmen des Registrierungsverfahrens sind diverse angaben zu Tätigen. Neben dem Namen, der Rechtsform und, sofern zutreffend, der Handelsregisternummer sind ebenfalls Anschrift sowie aktuelle Kontaktdaten inklusive der E-Mail-Adresse und öffentlichen IP-Adressbereiche anzugeben. Zusätzlich dazu muss die Brache oder, sofern einschlägig, der Sektor und eine Auflistung der EU Mitgliedstaaten, in welche die entsprechenden Dienste erbracht werden, erfolgen. Die Angabe der für die Einrichtung zuständige Aufsichtsbehörden des Bundes sowie der Länder ist ebenfalls notwendig (§33 Abs. 1). 
-
-        Betreiber kritischer Anlagen müssen zusätzlich ihre Anlagenkategorie nach BSI-KritisV sowie die ermittelten Versorgungskennzahlen gemäß der zu bestimmenden Rechtsverordnung des NIS2UmsuCG mitteilen. Der Standort sowie eine Kontaktstelle, welche stets verfügbar ist, muss ebenfalls angegeben werden. Darüberhinaus ist die kritische Dienstleistung sowie die öffentlichen IP-Adressbereiche der damit verbundenen Anlagen Bestandteil der Registrierung eines Betreibers kritischer Anlagen (§33 Abs. 1).
-
-        Das Bundesamt für Sicherheit in der Informationstechnik (BSI) kann in einvernehmen mit der jeweilig zuständigen Aufsichtsbehörde besonders wichtigen und wichtigen Einrichtungen, sowie Domain-Name-Registry-Diensteanbieter, eigenständig Registrieren, sofern diese ihrer Pflicht nicht nachkommen (§33 Abs. 3). Alternativ kann das Bundesamt für Sicherheit in der Informationstechnik (BSI) die aus ihrer Sicht notwendigen Aufzeichnungen, Schriftstücke und sonstigen Unterlagen Anfordern um den Umstand der Registrierungspflicht zu bewerten. Dies unter der Voraussetzung das aus sich der Einrichtung Geheimschutzinteressen oder überwiegende Sicherheitsinteressen vorliegt (§33 Abs. 4). Sollten sich Änderungen an den zu Übermittelnden Informationen ergeben müssen diese binnen zwei Wochen mitgeteilt werden (§33 Abs. 5).
-
-        Bei Einrichtungen der Art DNS-Diensteanbieter, Top Level Domain Name Registries,Domain-Name-Registry-Dienstleister, Anbieter von Cloud-Computing-Diensten, Anbieter von Rechenzentrumsdiensten, Betreiber von Content Delivery Networks, Managed Service Provider, Managed Security Service Provider sowie für Anbieter von Online-Marktplätzen, Online-Suchmaschinen sowie Plattformen für Dienste sozialer Netzwerke ist zusätzlich die Hauptniederlassung sowie sonstigen Niederlassungen in der Europäischen Union anzugeben. Bei Änderungen haben diese Einrichtung eine first von drei Monate anstelle der zwei Wochen (§34).
-
-        \subsubsection{Anzeige des Einsatzes kritischer Komponenten}
-
-        [§41]
-
-        \subsubsection{Zertifizierungen und IT-Sicherheitskennzeichen}
-        Zentraler Bestandteil für die Konformität nach gewissen Vorgaben sind Zertifizierungen. So kann für Produkte oder Leistungen eine Sicherheits- oder Personenzertifizierung oder eine Zertifizierung als IT-Sicherheitsdienstleister beantragt werden. Hierbei fungiert das Bundesamt für Sicherheit in der Informationstechnik (BSI) als nationale Zertifizierungsstelle der Bundesverwaltung für IT-Sicherheit (Vgl. §52 Abs. 1 und 2). Diese Zertifikate könne entsprechend von anerkannte sachverständige Stellen ausgestellt werden. Anerkannt ist eine Stelle, wenn diese die sachliche und personelle Ausstattung sowie die fachliche Qualifikation und Zuverlässigkeit der Konformitätsbewertungsstelle nach vom Bundesamt für Sicherheit in der Informationstechnik (BSI) festgelegten Kriterien erfüllt (Vgl. §52 Abs. 3 und 7). Zusätzlich können Zertifizierungen anderer anerkannter Zertifizierungsstellen aus dem Bereich der Europäischen Union anerkannt werden, wenn diese gleichwertige Sicherheit ausweisen und die Gleichwertigkeit durch das Bundesamt für Sicherheit in der Informationstechnik (BSI) festgelegt wurde (§52 Abs. 8).
-
-        Darüberhinaus kann der Begriff nationale Zertifizierungsstelle auf nationale Behörde für die Cybersicherheitszertifizierung ausgeweitet werden (§54 Abs. 1). Das Bundesamt für Sicherheit in der Informationstechnik (BSI) ist verantwortlich und bemächtigt Konformitätsbewertungsstellen zu Auditiren, um die Konformität der Zertifizierung zu gewährleisten. Ferner kann das Bundesamt für Sicherheit in der Informationstechnik (BSI) die Vorlage von Unterlagen oder Mustern verlangen, oder erforderlichen Auskünfte und sonstige Unterstützung, um seiner Pflicht nachzukommen. Darunter fallen ebenfalls die Besichtigung der Betriebsstätten, Geschäfts- und Betriebsräume sowie die Prüfung der dort befindliche Unterlagen und Muster (§54 Abs. 3, 4 und 5). Erfüllt eine Konformitätsbewertungsstellen die Anforderungen nicht mehr kann das Bundesamt für Sicherheit in der Informationstechnik (BSI) die entsprechende Akkreditierung entziehen (Vgl. §54 Abs. 6 und 7).
-
-        [§55]
-
-        \subsection{Nationale Umsetzungsentwürfe}
-            \emph{Bezug zu den Anforderungen aus der Europäischen Union und in welche Entwürfe die Richtlinien umgesetzt wurden.}
-            \subsubsection{NIS-2-Umsetzungs- und Cybersicherheitsstärkungsgesetz}
-                \emph{Umriss der für diese Arbeit wichtigen Aspekte wie beispielsweise betroffene Unternehmen aber auch der Gesamtkontext des Rechtes in der Wirtschaft und welche Kernaspekte es umfasst.}
-            \subsubsection{KRITIS-Dachgesetz}
-            \emph{Umriss der für diese Arbeit wichtigen Aspekte wie beispielsweise betroffene Unternehmen aber auch der Gesamtkontext des Rechtes in der Wirtschaft und welche Kernaspekte es umfasst.}
+    %:: Abschnitt: Herleitung des Fragenkatalogs
+    \newpage
+    \section{Praktische Maßnahmen}\label{sec:ParktischeMaßnahmen}
         \subsection{Organisationsstrukturen}
             \emph{In adäquaten Unterabschnitten sollen relevante und für die Arbeit nützliche Organisationsstrukturen näher erläutert werden. Hierbei soll der Fokus unter anderem darauf liegen wie man die Leistung von Mitarbeitern bewerten kann, wenn diese im Rahmen der Informationssicherheit zusätzliche Aufgaben wahrnehmen, welche nicht unmittelbar Ihrer Haupttätigkeit entsprechen.}
         \subsection{Geschäftsprozessmodellierung}
             \emph{In adäquaten Unterabschnitten sollen relevante Aspekte der Geschäftsprozessmodellierung beschrieben werden. Hierbei soll ein Fokus auf die BPMN2.0 gelegt werden, da diese Prozesse sehr spezifisch beschreiben kann und direkt oder indirekt in Business Process Engine verwendet werden können.}
         \subsection{Technische Konzepte}
             \emph{In adäquaten Unterabschnitten sollen relevante Aspekte technischer Konzepte näher erläutert werden. Essenzielle Systeme, wie beispielsweise ein Information Security Management System (ISMS), sollen entsprechend beschrieben werden. Weitere technische Maßnahmen (Netzwerksegmentierung, Einbruchserkennung (IDS), Endpoint Management, Patch Management, uvm.) sollen hier ebenfalls beschrieben werden, sofern hinreichend für das Ergebnis der Arbeit. Dies soll an die Geschäftsprozesse anknüpfen, da Dokumentation sowohl organisatorisch (manuell) oder auch technisch (automatisch) sowie hybrid sein kann.}
-
-    %:: Abschnitt: Herleitung des Fragenkatalogs
-    \newpage
-    \section{Herleitung des Fragenkatalogs}
+    \section{Herleitung des Fragenkatalogs}\label{sec:HerleitungDesFragenkatalog}
         \emph{In diesem Kapitel wird mit adäquaten Unterabschnitten, welche sich im Rahmen der Recherche ergeben werden, der Fragenkatalog an sich und dessen Herleitung, auf Basis der diversen Werke, beschrieben}
 
     %:: Abschnitt: Rahmen und Ergebnis der Fallstudie
