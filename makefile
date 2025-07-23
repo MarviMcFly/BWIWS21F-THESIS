@@ -54,7 +54,7 @@ cleanall: clean
 error:
 	@clear
 	@echo "----  Errors where found ----\n"
-	@cat main.log | grep "\!" -n
+	@cat main.log | grep "\!" -n -C 10
 	@echo "\n-----------------------------\n"
 
 .PHONY: prepare build release clean cleanall quick
