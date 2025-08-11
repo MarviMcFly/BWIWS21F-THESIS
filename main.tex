@@ -69,6 +69,9 @@
     \newpage
     \pagenumbering{arabic}
     \section{Einleitung}
+    %---------------
+    % TODO: Vgl. -> Pre-Note; S. -> Post-Note
+    %---------------
     Im folgenden Kapitel sollen zunächst die Beweggründe für diese Arbeit widergespiegelt werden. Anschließend erfolgt eine Einordnung auf welchen Rahmen sich diese Arbeit bezieht um darauf folgend auf die spezifische Zielsetzung einzugehen. Abschließend wird der generelle Aufbau dieser Arbeit umrissen um die einzelnen Kapitel grob zusammenzufassen.
     \subsection{Motivation}\label{sec:Einleitung_Motivation}
         Der zunehmende Fachkräftemangel erschwert es \gls{kmu} angemessene Maßnahmen zur physischen Resilienz sowie der Informationssicherheit zu treffen. Mit den Richtlinien 2022/2555 und 2022/2557 verpflichtet die \gls{eu} Ihre Mitgliedstaaten auf nationaler Ebenen Gesetze zu erlassen, welche wiederum Unternehmen verpflichtet entsprechende Maßnahmen zu ergreifen. Sowohl kritische Einrichtungen sowie dessen Zulieferer sind somit verpflichtet neue Mindeststandards einzuhalten und zu implementieren. Zwar wurden die Richtlinien auf nationaler Ebene noch nicht vollständig in geltendes Recht überführt, mit dem \gls{nis2umsucg} sowie dem \gls{kritis-dachg} liegen jedoch konkrete Gesetzesentwürfe vor. Das stellt \gls{kmu} vor eine Herausforderung, da diese mit weniger Personellen und Finanziellen Ressourcen teilweise dieselben regulatorischen Anforderungen unterliegen, wie große Unternehmen. Dies verdeutlicht die Notwendigkeit von praxisnahen Empfehlungen wie diese regulatorischen Anforderungen umzusetzen sind, um \gls{kmu} entsprechend zu entlasten und deren Rechtskonformität und Wettbewerbsfähigkeit zu gewährleisten.\footnote{
@@ -648,20 +651,47 @@
                 \footcite[prenote][S. 6, 9 - 12]{Nutzung von cloudbasierten Dienstleistungen in Kritischen Infrastrukturen – eine Hilfestellung des UP KRITIS}
             }
             \subsubsection{Sicherung, Wiederherstellung und Betriebskonti­nuität}
-            % NOTE: Nummer 4.1. und 4.2.
-            % NOTE: Nummer 3.2.5. Archivierung von Protokllen
-            % NOTE: Nummer 13.1.2. Buchstabe a und b -> USV, Fallback Internet
-            % NOTE: Nummer 13.3.2. ZuKo & CCTV & EMA
-            \subsubsection{Systemverwaltungssysteme}
-            % NOTE: Nummer 11.3.2. Buchstabe d; 11.4.2.
-            % NOTE: Nummer 12.3.2. Autorun und nicht autorisierte Wechseldatenträger verhindern
+            % Nummer 4.1. und 4.2.
+            % Nummer 3.2.5. Archivierung von Protokllen
+            Wesentlich für ein Unternehmen ist die Betriebskontinuität. Hierunter versteht man die ununterbrochene Verfügbarkeit aller wichtigen Ressourcen, die wesentliche Geschäftsfunktionen unterstützen. Das Betriebskontinuitätsmanagement hingergen sorgt für die Verfügbarkeit von Prozessen und Ressourcen nach einer Unterbrechung des Geschäftsbetriebs, um die kontinuierliche Erreichung der geschäftskritischen Ziele sicherzustellen. Demnach muss ein Notfallplan für die Aufrechterhaltung und Wiederherstellung des Betriebs erstellt werden, welcher im wesentlichen die Rollen und Verantwortlichkeiten sowie die Reihenfolge der Wiederherstellung der Betriebsabläufe beinhaltet. Darüberhinaus sind ergänzend Sicherungspläne festzulegen, aus welche auf Basis einer Klassifizierung der Netz- und Informationssysteme die Wiederherstellungszeiten und Aufbewahrungsfristen entsprechend geschäftlichen und regulatorischen Anforderungen definiert. Zu gewährleisten ist die Speicherung von Sicherungskopien an einem oder mehreren sicheren Orten sowie die Gewährleistung der Vollständigkeit und Integrität der Sicherungskopien. Sicherungskopien erfolgen als Voll-, Differenzial- oder inkrementelle Backups; in der Praxis kombiniert eine Strategie meist mehrere dieser Verfahren. Eine Vollsicherung kopiert den gesamten Datenbestand und benötigt daher am meisten Zeit und Speicher. Eine Differenzsicherung erfasst alle Änderungen seit der letzten Vollsicherung; für die Wiederherstellung genügen die letzte Vollsicherung und die jüngste Differenzsicherung. Eine inkrementelle Sicherung speichert nur die Änderungen seit der jeweils vorherigen Sicherung (voll oder inkrementell); zur Wiederherstellung werden die Vollsicherung und alle zugehörigen Inkremente benötigt. Diese Anforderungen können mit der integrierten Lösung Veeam Backup & Replication erfüllt werden. Veeam Backup & Replication ist Teil der Veeam Availability Suite und ermöglicht die Sicherung aller  Workloads, einschließlich Cloud-, virtueller, physischer und Anwendungs-Workloads. Die Grundlage für die Datensicherheit bietet die \emph{3-2-1-1-0} Regel. Hier existieren drei kopiene auf zwei verschiedenen Speichermedien wovon eine kopie außerhalb des Standorts der gesicherten Systeme liegt und eine kopie offline isoliert oder technisch unveränderlich gespeichert wird. Nach der Validierung der Sicherungskopie dürfen keine Fehler aufgetreten sein. Erreichen kann man dies durch speichern der primären Sicherungskopie direkt auf den vorhandenen Festplatten der Umgebung von Veeam Backup & Replication. Zusätzlich werden die Daten dann noch auf ein weiteres abgesetztes \gls{nas} und \gls{lto} Tape kopiert. Somit erfüllt man die Kernanforderungen an die \emph{3-2-1-1-0} Regel. Um die ... Vollständig zu erfüllen und die Konfiguration zu erleichtern biete Veeam Backup & Replication sogenannte \gls{sobr}. Diese ermöglichen es die Sicherungskopie auf mehrere Zielsysteme zu speichern und im Rahmen dessen kann beispielsweise ein externer \gls{s3} speicher an Veeam Backup & Replication angebunden werden. Somit ergänzen sich organisatorische und technische Maßnahmen zur Erfüllung der Anforderung an Sicherung, Wiederherstellung und Betriebskonti­nuität.
+            \footnote{
+                \footcite[Vgl. S. 1 - 3][]{9781931332767}
+                \footcite[Vgl. S. 244][]{9781849285384}
+                \footcite[Vgl. S. 228 – 230][]{9781118094839}
+                \footcite[Vgl. S. 3, 24 - 33][]{9781837630097} % 3rd
+                \footcite[Vgl. S. 3 , 39 - 40, 47 - 48][]{9781803236810} % 2nd
+            }
             \subsubsection{Protokolle und Protokollierung}
-            % NOTE: Nummer 3.2.1. und 3.2.3.; Windows und Linux Audit Logs + SaaS Protokolle
-            % NOTE: Nummer 3.2.2. und 3.2.4. automatische und manuelle Analyse der Protokolle
+            % Nummer 3.2.1. und 3.2.3.; Windows und Linux Audit Logs + SaaS Protokolle
+            % Nummer 3.2.2. und 3.2.4. automatische und manuelle Analyse der Protokolle
+            Erforderlich ist es diverse Ereignisse in den Netz- und Informationssystem zu Protokollieren und auszuwerten sowie auf daraus erkannten Vorfällen zu reagieren. Demnach muss gewährleistet werden das die verwendeten und zu verwendeten Netz- und Informationssystem sowie Anwendungen die Allgemeinen Betrieblichen Anforderungen an die Protokollierung erfüllen. Auf Betriebssystemebene bietet \emph{Microsoft Windows Server} die \emph{Ereignisanzeige} um Ereignisse auf Betriebssystem oder Applikationsebene zu Protokollieren. Auf Linux basierten Systemen kann \emph{journald} in Kombination mit \emph{auditd} zum Einsatz kommen. Auf diesem Weg können Ereignisse inklusive Auditierung zentral Protokolliert werden. Dies bezieht sich jedoch auf eine lokale zentralität. Allgemein kann ein \gls{siem} zum Einsatz kommen um sämtliche Protokolle von allen Netz- und Informationssystem sowie Anwendungen zu speichern, auszuwerten und bei Bedarf betroffene Personen zu alamieren. Ein einfaches \gls{siem} lässt sich in sechs separate Teile oder Prozesse unterteilen. Diese sind das Quellgerät, die Protokollsammlung, die Analyse und Normalisierung der Protokolle, die Regel-Engine, die Protokollspeicherung sowie die Ereignisüberwachung und -abfrage. Jeder dieser Teile kann unabhängig von den anderen arbeiten, aber ohne das Zusammenspiel aller Teile funktioniert das \gls{siem} als Ganzes nicht richtig. Somit kann mittels eines \gls{siem} unter vorrausetzung der korrekt Konfigurierten Quellen eine Zentrale Protokollierung geschaffen werden um die Anforderung der \gls{nis2umsucg} zu erfüllen.
             \footnote{
                 \footcite[Vgl. S. 106 - 107][]{iso27002-2022}
+                \footcite[Vgl. S. 463 - 469, 516 - 519][]{9781838981778}
+                \footcite[Vgl. S. 529 - 533][]{9781305078628}
+                \footcite[Vgl. S. 78 - 91][]{9780071701082}
             }
         \subsection{Risikomanagement}
+        % Nummer 2 
+        % Nummer 7
+        Das Risikomanagement ist ein wichtiger Teil eines Unternehmens. Hierbei geht es um das Schützen von Unternehmenswerten. Dies verbessert die Leistung, fördert Innovationen und unterstützt die Erreichung von Zielen. Hierbei folgt das Risikomanagement immer dem Zyklus des Design, der Implementation, der Evaluation der Maßnahmen, die darauf basierende Verbesserung und die anschließende Integration der Verbesserung. Identisch sind die Anforderung der \emph{Durchführungsverordnung (EU) 2024/2690}  an das Risikomanagement, jedoch mit ausschließlichen Bezug auf Risiken für die Sicherheit von Netz- und Informationssystemen. Hierzu ist im Einklang mit den allgemeinen Risikomanagement Verfahren festzulegen, welche mindestens die folgenden Aspekte Umfassen:
+        \begin{itemize}
+            \item Risikomanagementmethodik
+            \item Risikotoleranzschwelle unter betrachtung der Risikobereitschaft  betreffenden 
+            \item Risikokriterien
+            \item Im Kontext des gefahrenübergreifenden Ansatz die bestehenden Risiken für die Sicherheit von Netz- und Informationssystemen ermitteln und dokumentieren
+            \item Bestehenden Risiken für die Sicherheit von Netz- und Informationssystemen analysieren inklusive des Bedrohung Niveau und der Wahrscheinlichkeit sowie die Auswirkung 
+            \item Risikobehandlungsplan mit ermittelten Risiken auf Basis der Risikokriterien bewerten, Maßnahmen für die Behandlung von Risiken, Umsetzung der Maßnahmen überwachen, Verantwortlichkeit und Terminierung für die Umsetzung der Maßnahmen 
+        \end{itemize}
+        Die Allgemeinen Risikomanagementmaßnahmen können auf Basis entsprechender \gls{bsi} sowie \gls{iso} Publikation hinsichtlich der Netz- und Informationssysteme erweitert werden.\footnote{
+            \footcite[Vgl. S. V, 2 - 4][]{iso31000-2018}
+            \footcite[Vgl. S. 7, 9 - 10][]{bsi-200-3}
+        }
+        
+        \subsection{Physischer Schutz}
+        % Nummer 13.1.2. Buchstabe a und b -> USV, Fallback Internet
+        % Nummer 13.3.2. ZuKo & CCTV & EMA
+        Der physikalische Schutz spielt ebenfalls eine wichtige Rolle, vor allem im Kontext des \gls{kritis-dachg}. Demnach muss das Risikomanagement physikalische Bedrohungen Unternehmens- und Ortsspezifisch betrachten.
     \section{Fragenkatalog}\label{sec:HerleitungDesFragenkatalog}
         \emph{In diesem Kapitel wird mit adäquaten Unterabschnitten, welche sich im Rahmen der Recherche ergeben werden, der Fragenkatalog an sich und dessen Herleitung, auf Basis der diversen Werke, beschrieben}
         
