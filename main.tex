@@ -301,11 +301,9 @@
         }\medbreak
 
         \subsection{Erforderliche Maßnahmen}
-        % NOTE: Nummer 6 <- NIS2UmsuCG §38, Umsetzungs-, Überwachungs- und Schulungspflicht für Geschäftsleitungen besonders wichtiger Einrichtungen und wichtiger Einrichtungen 
-        % NOTE: Nummer 8 <- NIS2UmsuCG §39, Nachweispflichten für Betreiber kritischer Anlagen
-        %
-        %
-        %
+        % TODO: Konkreten / Spezifische Kapitel ergänzen
+        % Nummer 6 <- NIS2UmsuCG §38, Umsetzungs-, Überwachungs- und Schulungspflicht für Geschäftsleitungen besonders wichtiger Einrichtungen und wichtiger Einrichtungen 
+        % Nummer 8 <- NIS2UmsuCG §39, Nachweispflichten für Betreiber kritischer Anlagen
             Aus \gls{nis2umsucg} sowie der \emph{Durchführungsverordnung (EU) 2024/2690} gehen diverse Anforderungen hervor, welche auf Basis europäischen und internationalen Normen beruhen. Die erforderlichen Maßnahmen sind in den folgenden Unterabschnitten beschrieben und in ihrer Gänze ausgeführt. Die \emph{Durchführungsverordnung (EU) 2024/2690} sieht zusätzlich vor das Unternehmen die Möglichkeit haben Ausgleichsmaßnahmen zu ergreifen, die geeignet sind diese Anforderungen zu erfüllen, wenn wegen ihrer Größe die Umsetzung nicht Verhältnismäßig ist. Ebenfalls ist es möglich bestimmte Anforderungen nicht zu erfüllen, wenn diese als nicht angemessen, anwendbar oder durchführbar erscheinen. Abweichungen sind folglich zu dokumentieren.\footnote{
                 \footcite[Vgl. Absatz 3,][]{EU2024-2690}
                 \footcite[Vgl. Absatz 5,][]{EU2024-2690}
@@ -528,7 +526,8 @@
                 \footcite[Vgl. Nummer 5.1.4.][]{EU2024-2690}
             }
 
-        \subsubsection{Verwaltung der Systeme}
+        \subsection{Verwaltung der Systeme}
+        % TODO: Einleitung schreiben
             \subsubsection{Software- und Sicherheitspatch-Management}
             % Nummer 6.6., 6.9.
             % https://learn.microsoft.com/en-us/intune/intune-service/fundamentals/what-is-intune
@@ -537,6 +536,7 @@
             % https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Grundschutz/IT-GS-Kompendium_Einzel_PDFs_2022/07_SYS_IT_Systeme/SYS_3_2_2_Mobile_Device_Management_Edition_2022.pdf?__blob=publicationFile&v=3
             Ein wichtiger Bestandteil der Verwaltung von Systemen ist die Verwaltung der darauf verwendeten Applikationen sowie dessen Aktualität, aber auch die Aktualität des Betriebssystems. Allgemein sind Verfahren für das Sicherheitspatch-Management sowie der Schutz gegen Schad- und nicht genehmigte Software. Sicherzustellen ist das die die Verwendung von Schadsoftware oder nicht genehmigter Software aufgedeckt oder verhindert wird. Ebenfalls sind Sicherheitspatches innerhalb einer angemessenen Frist anzuwenden. Beide Aspekte können mittels \gls{mdm} und \gls{mam} realisiert werden.\footcite[Vgl. S. 21 und 118][]{9781509301331}. Für beide Lösungen gibt es diverse Anbieter\footcite[Diverse MDM/MAM anbieter][]{MISSING}, wie beispielsweise Microsoft Intune. Microsoft Intune bietet erfüllt die durch das \gls{nis2umsucg} Beschriebenen Anforderungen und ist für gängige Betriebssysteme verfügbar\footcite[Intune Supported os, Feature Matrix][]{MISSING}. Weiterhin kann Sicherheitspatch-Management für Systeme, basierend auf Windows oder Linux, durch Open-Source Lösungen wie Ansible, Winget-AutoUpdate und dem Windows Paket-Manager winget Ergänzend oder ausschließlich eingesetzt werden.\footcite[][winget etc.]{MISSING}
         \subsection{Dokumentation}
+        % TODO: Einleitung schreiben
             \subsubsection{Anlagen- und Werte, Betriebsabläufe und Konfigurations-Management}\label{subsubsec:AuWBuKM}
             % Nummer 6.7.2. Buchstabe a
             % Nummer 6.3.2.
@@ -560,6 +560,7 @@
                 \footcite[Vgl. S. 1][]{MISSING} % https://www.itophub.io/wiki/page
             }
         \subsection{Sicherheits- und Identitätsverwaltung}
+        % TODO: Einleitung schreiben
             \subsubsection{Managementsystem für Informationssicherheit}
             % 3.1.1. & 3.2.2. -> Sicherheitsvorfälle erkennen, behandeln, etc.
             % 1.1.1. -> Allgemeines Konzept für Sicherheit
@@ -598,15 +599,14 @@
                 \footcite[Vgl. S. 93][]{9780124201149}
                 \footcite[Vgl. S. 714][postnote]{9783486721386}
             }
-
             \subsubsection{Identitätsmanagement}
-            % NOTE: Nummer 11.1.2.
-            % NOTE: Nummer 11.2.2. Buchstabe b - f; für c ein Prozess
-            % NOTE: Nummer 11.3.2. Gesonderte Administrationskonten - Organisatorische Anweisung hinsichtlich Nutzung
-            % NOTE: Nummer 11.5.2.
-            % NOTE: Nummer 11.5.3. Prozess zur Genehmigung
-            % NOTE: Nummer 11.6.2. Prozess zur sicheren mitteilung initialer Kennwörter mit initialer änderungsforcierung
-            % NOTE: Nummer 11.7.1. MFA erfordern wo möglich; durch IAM einfacher
+            % Nummer 11.1.2.
+            % Nummer 11.2.2. Buchstabe b - f; für c ein Prozess
+            % Nummer 11.3.2. Gesonderte Administrationskonten - Organisatorische Anweisung hinsichtlich Nutzung
+            % Nummer 11.5.2.
+            % Nummer 11.5.3. Prozess zur Genehmigung
+            % Nummer 11.6.2. Prozess zur sicheren mitteilung initialer Kennwörter mit initialer änderungsforcierung
+            % Nummer 11.7.1. MFA erfordern wo möglich; durch IAM einfacher
             Der Zugang zu Netz- und Informationssysteme sowie zu dessen Daten und Informationen ist zu Kontrollieren. Zentraler Aspekt ist das die Prinzipien von \emph{Need-to-know} sowie \emph{Need-to-use} eingehalten werden. Sämtliche Personen und Geräte, wie Personal oder Dienstleister, Fallen unter die Notwendigkeit der Zugriffskontrolle. Dies kann mittels \gls{iam} erfolgen. Ziel von \gls{iam} ist das Verwalten von Identitäten über dessen Lebenszyklus hinweg inklusive der Protokollierung von Änderungen an einer Identität. Zusätzlich müssen Arbeitsabläufe etabliert werden, welche das erstellen einer Identität genehmigt und die sichere Kommunikation von initialen Zugangsdaten gewährleistet. Ebenfalls ist zu gewährleisten das Identitäten zu Verwaltung von Systemen separiert von denen des alltäglichen Arbeitens sind. Für die Erhöhung der Sicherheit der Zugänge, verknüpft mit den Identitäten, kann \gls{mfa} eingeführt werden. Hierfür und im Allgemeinen ist eine zentralisiertes \gls{iam} inklusive Föderation von Identitäten förderlich. Zu diesem Zweck können Lösungen wie \emph{Keycloak} eingesetzt werden. \emph{Keycloak} ist ein Open-Source-Tool für die Identitäts- und Zugriffsverwaltung. Durch die Delegierung der Authentifizierung an \emph{Keycloak} muss sich das Netz- und Informationssystem nicht mit verschiedenen Authentifizierungsmechanismen oder dem sicheren Speichern von Passwörtern befassen. \emph{Keycloak} basiert auf branchenüblichen Protokollen und unterstützt \gls{oauth} 2.0, OpenID Connect und \gls{saml} 2.0. Die Verwendung branchenüblicher Protokolle ist sowohl aus Sicherheitsgründen als auch im Hinblick auf die einfachere Integration in bestehende und neue Netz- und Informationssystem wichtig.
             \footnote{
                 \footcite[Vgl. S. 3 - 6, 13 - 15][]{9781836797661} % https://www.google.de/books/edition/Study_Guide_to_Identity_and_Access_Manag/cGAsEQAAQBAJ?hl=de&gbpv=1&kptab=overview
@@ -630,15 +630,23 @@
                 \footcite[Vgl. S. 48][]{9781484242698}
             }
         \subsection{Daten, Informationen und Systeme}
+        % TODO: Einleitung schreiben
             \subsubsection{Netz- und Informationssysteme sowie Applikationen}
-            % NOTE: Allgemeine Anforderung an zu beschaffende Netz- und Informationssysteme sowie Applikationen
+            % Allgemeine Anforderung an zu beschaffende Netz- und Informationssysteme sowie Applikationen
             %           Nummer 3.2.1 -> Protokollierung muss gegeben sein
-            %           Nummer 6.1.2. -> Sicherheitsmaßnahmen beim Erwerb von IK T-Diensten oder IKT-Produkten
+            %           Nummer 6.1.2. -> Sicherheitsmaßnahmen beim Erwerb von IKT-Diensten oder IKT-Produkten
             %           Nummer 6.2.1. und 6.2.2. -> Sicherer Entwicklungszyklus
-            % NOTE: Nummer 12.2.2. Handhabung Assets für Erwerb, Verwendung, Speicherung, Transport und Entsorgung
-            % NOTE: Nummer 12.2.1. Klassifizierung für Anforderunge an Vertraulichkeits-, Integritäts-, Authentizitäts-  und  Verfügbarkeitsanforderungen 
-            % NOTE: Nummer 4.2.2.
-            % NOTE: Nummer 3.2.6. Einheitlicher NTP
+            % Nummer 12.2.2. Handhabung Assets für Erwerb, Verwendung, Speicherung, Transport und Entsorgung
+            % Nummer 12.2.1. Klassifizierung für Anforderunge an Vertraulichkeits-, Integritäts-, Authentizitäts-  und  Verfügbarkeitsanforderungen 
+            % Nummer 4.2.2.
+            Nicht nur der Erwerb von Netz- und Informationssysteme sowie Applikationen hinsichtlich der Lieferanten sondern auch die Lösungen an sich müssen bestimmte Anforderungen erfüllen. Hierbei ist unerheblich ob ein Netz- und Informationssysteme sowie Applikationen eigenentwickelt oder beschafft wurde. Wenn man die gesamtheitlichen Anforderungen an die \emph{Durchführungsverordnung (EU) 2024/2690} betrachtet ergeben sich diverse implizite Anforderungen. So muss gegeben sein das ein externer Identitätsanbieter verwendet werden kann. Zusätzlich muss Protokollierung des System, zumindest lokal, existieren. Zusätzlich solle vor Erwerb die Klassifizierung für Anforderungen an Vertraulichkeits-, Integritäts-, Authentizitäts-  und  Verfügbarkeitsanforderungen bekannt sein, sodass eine objektive Auswahl unter Anbetracht der existierenden Gegebenheiten möglich ist. Neben diesen funktionalen Anforderungen die sich aus der Gesamtheit ergeben existieren ebenfalls explizitere Anforderungen. Es müssen Sicherheitsanforderungen und -verfahren für den Entwicklungszyklus sowie die Entwicklungsumgebungen erstellt werden. Ebenfalls ist eine Analyse der Sicherheitsanforderungen in der Spezifikations- und Entwurfsphase jedes Entwicklungs- oder Beschaffungsvorhaben erforderlich. Um dem gerecht zu werden sind Vorschriften für die in- oder externe Entwicklung von xxx in den Phasen der Spezifikation, Konzeption, Entwicklung, Umsetzung sowie Tests festzulegen. Für das erstellen dieser Vorschrift kann man sich Publikationen des \gls{bsi} und der \gls{iso}. So sollten die Vorschriften Prinzipien der sicheren Systemarchitektur und technische Grundsätze umfassen, aber auch Anforderungen an die Dokumentation sind zu stellen. Allgemein sollte die Vorschrift die Themengebiete des Projektmanagement (Allgemeine funktionale und nicht funktionale Anforderungen, Beschaffung, IT-Betrieb, Personal), der Dokumentation, des Test und der Freigabe, der Installation, das Patch- und Änderungsmanagement sowie die Außerbetriebnahme umfassen um den gesamten Lebenszyklus abzudecken. Ebenfalls sollten cloudbasierte Dienstleistungen dediziert betrachtet werden, da hier der Einfluss auf beispielsweise Vertraulichkeits-, Integritäts-, Authentizitäts-  und  Verfügbarkeitsanforderungen, in Abhängigkeit des Servicemodell, eingeschränkt ist. Ergänzend und abschließend können in dem Rahmen ebenfalls die Handhabung bei Erwerb, Verwendung, Speicherung, Transport und Entsorgung festgelet werden um den Anforderungen an die Anlagen- und Werte gerecht zu werden.
+            \footnote{
+                \footcite[][Anforderungsarten]{MISSING}
+                \footcite[][S. 10]{TR-03185}
+                \footcite[][S. 10 - 11, 13]{Empfehlungen zu Entwicklung und Bereitstellung von in Kritischen Infrastrukturen eingesetzten Produkten}
+                \footcite[][8.26, 8.27]{iso27002-2022}
+                \footcite[prenote][S. 6, 9 - 12]{Nutzung von cloudbasierten Dienstleistungen in Kritischen Infrastrukturen – eine Hilfestellung des UP KRITIS}
+            }
             \subsubsection{Sicherung, Wiederherstellung und Betriebskonti­nuität}
             % NOTE: Nummer 4.1. und 4.2.
             % NOTE: Nummer 3.2.5. Archivierung von Protokllen

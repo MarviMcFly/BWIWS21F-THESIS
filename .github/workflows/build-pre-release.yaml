@@ -1,52 +1,52 @@
-name: Build and Conditional Release LaTeX PDF
+# name: Build and Conditional Release LaTeX PDF
 
-on:
-  push:
-    branches:
-      - main
+# on:
+#   push:
+#     branches:
+#       - main
 
-jobs:
-  build-and-release:
-    runs-on: ubuntu-latest
+# jobs:
+#   build-and-release:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: 📥 Checkout Repository
-        uses: actions/checkout@v4
+#     steps:
+#       - name: 📥 Checkout Repository
+#         uses: actions/checkout@v4
 
-      - name: Set up LaTeX environment
-        run: sudo apt-get update && sudo apt-get install -y texlive texlive-lang-german texlive-latex-extra biber make
+#       - name: Set up LaTeX environment
+#         run: sudo apt-get update && sudo apt-get install -y texlive texlive-lang-german texlive-latex-extra biber make
 
-      - name: Build LaTeX Project
-        run: make build
+#       - name: Build LaTeX Project
+#         run: make build
 
-      - name: Read timestamp from file
-        id: timestamp
-        run: echo "timestamp=$(cat .timestamp)" >> $GITHUB_ENV
+#       - name: Read timestamp from file
+#         id: timestamp
+#         run: echo "timestamp=$(cat .timestamp)" >> $GITHUB_ENV
 
-      - name: Find generated PDF
-        id: findpdf
-        run: |
-          FILE=$(ls build/${{ env.timestamp }}_*.pdf | head -n 1)
-          echo "pdf_file=$FILE" >> $GITHUB_ENV
+#       - name: Find generated PDF
+#         id: findpdf
+#         run: |
+#           FILE=$(ls build/${{ env.timestamp }}_*.pdf | head -n 1)
+#           echo "pdf_file=$FILE" >> $GITHUB_ENV
 
-      - name: Get latest commit message (safe Base64 version)
-        id: commitmsg
-        run: |
-          raw_msg=$(git log -1 --pretty=%B)
-          echo "$raw_msg" > message.txt
-          echo "should_release=false" >> $GITHUB_ENV
-          if echo "$raw_msg" | grep -q "#release"; then
-            echo "should_release=true" >> $GITHUB_ENV
-          fi
+#       - name: Get latest commit message (safe Base64 version)
+#         id: commitmsg
+#         run: |
+#           raw_msg=$(git log -1 --pretty=%B)
+#           echo "$raw_msg" > message.txt
+#           echo "should_release=false" >> $GITHUB_ENV
+#           if echo "$raw_msg" | grep -q "#release"; then
+#             echo "should_release=true" >> $GITHUB_ENV
+#           fi
           
-      - name: Create GitHub Release
-        if: env.should_release == 'true'
-        uses: softprops/action-gh-release@v2
-        with:
-          name: "${{ env.timestamp }}"
-          tag_name: "build-${{ env.timestamp }}"
-          body_path: message.txt
-          prerelease: true
-          files: ${{ env.pdf_file }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
+#       - name: Create GitHub Release
+#         if: env.should_release == 'true'
+#         uses: softprops/action-gh-release@v2
+#         with:
+#           name: "${{ env.timestamp }}"
+#           tag_name: "build-${{ env.timestamp }}"
+#           body_path: message.txt
+#           prerelease: true
+#           files: ${{ env.pdf_file }}
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.PAT }}
