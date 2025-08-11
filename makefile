@@ -44,12 +44,16 @@ quick: clean prepare $(TEX).tex
 clean:
 	@rm -f $(TEX).{aux,log,toc,out,bbl,bcf,blg,acn,acr,alg,glg,glo,gls,ilg,ist,lof,lot,log,run.xml,synctex.gz,tex.bbl,tex.blg,fls,fdb_latexmk,timestamp}
 	@rm -f .timestamp
+	@rm -f $(TEX)_word.docx
 	@rm -f $(TEX).pdf
 
 cleanall: clean
 	@rm -f $(TEX).pdf
 	@rm -rf $(BUILDDIR)
 	@rm -rf $(TIMESTAMP)
+
+docx:
+	@pandoc $(TEX).tex --filter pandoc-crossref --bibliography=$(ls *.bib | head -1) -o $(TEX)_word.docx	
 
 error:
 	@clear
