@@ -13,7 +13,7 @@ prepare:
 build:
 	$(MAKE) _build || $(MAKE) error
 
-_build: prepare
+_build: clean prepare
 	pdflatex -synctex=1 -interaction=nonstopmode -output-directory=./ $(TEX).tex 
 	
 	@if [ -f "$(TEX).acn" ] || [ -f "$(TEX).glo" ]; then \

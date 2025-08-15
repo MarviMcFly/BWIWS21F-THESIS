@@ -1,0 +1,64 @@
+\documentclass[a4paper,12pt,twoside]{article} % twoside optional
+\usepackage[margin=25mm]{geometry}
+\usepackage[utf8]{inputenc}                                 % Eingabecodierung UTF-8 (für Umlaute etc.)
+\usepackage[scaled]{helvet}                                 % Serifenlose Schrift Helvetica, skaliert
+\usepackage{lmodern}    % schöne Schrift
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{microtype}
+
+\usepackage{fancyhdr}
+\setlength{\headheight}{15pt} % genug Platz für Header
+
+% ---- Version hier zentral setzen ----
+\newcommand{\docversion}{v1.2.0} % <=== HIER anpassen
+\renewcommand{\familydefault}{\sfdefault}
+% ---- fancyhdr-Setup ----
+\pagestyle{fancy}
+\fancyhf{} % alles leeren
+
+% Links: Version (auf geraden & ungeraden Seiten)
+\fancyhead[LE,LO]{\docversion}
+% Rechts: Seitenzahl (auf geraden & ungeraden Seiten)
+\fancyhead[RE,RO]{\thepage}
+
+% dünne Linie unter dem Header (optional)
+\renewcommand{\headrulewidth}{0.4pt}
+% keine Fußzeile
+\renewcommand{\footrulewidth}{0pt}
+
+% Auch "plain"-Seiten (z. B. nach \maketitle / \section* etc.) anpassen:
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyhead[LE,LO]{\docversion}
+  \fancyhead[RE,RO]{\thepage}
+  \renewcommand{\headrulewidth}{0.4pt}
+}
+
+\title{Titel des Dokuments}
+\author{Ihr Name / Unternehmen}
+\date{\today}
+
+\begin{document}
+\maketitle
+\thispagestyle{plain} % stellt sicher, dass auch die Titelseite den Header bekommt
+\section{Einleitung}
+Dieser Fragebogen wurde von \emph{Marvin Künzel} im Rahmen seiner \emph{Bachelor-Thesis} zur \emph{zur Erlangung des Grades eines Bachelor of Science (B.Sc.)} mit dem Thema \emph{Informationssicherheit in deutschen Unternehmen – Anforderungen und Umsetzungsoptionen im Kontext des KRITIS-Dachgesetzes und NIS2-Umsetzungsgesetzes} erarbeitet. Ziel ist es mittels des Fragebogen eine Selbsteinschätzung zum aktuellen Konformitätsstatus eines Unternehmens in Anbetracht des \emph{NIS-2-Umsetzungs- und Cybersicherheitsstärkungsgesetz} sowie \emph{KRITIS-Dachgesetz}. Die Auswertung und die Ergebnisse dieses Fragebogens dienen ausschließlich der allgemeinen Information. Sie stellen keine individuelle Beratung dar und begründen kein Vertrags- oder Beratungsverhältnis. Entscheidungen auf Basis der Fragebogen-Ergebnisse werden eigenverantwortlich getroffen. Die Ergebnisse sind kritisch unter Anbetracht der angegebenen Referenzen zu prüfen. Es besteht keine Gewähr für die Richtigkeit, Vollständigkeit und Aktualität der bereitgestellten Informationen sowie dafür, dass die Auswertung in jedem Einzelfall zutreffend sind.
+\subsection{Kontaktstelle}
+\begin{table}[h!]
+\centering
+\begin{tabular}{lll}
+\textbf{Art} & \textbf{Kontaktperson} & \textbf{Kontaktstelle(n)}   \\ \hline
+Rückfragen   & Marvin Künzel          & questionaries@kuenzel-it.de \\ \hline
+Resonanz     & Marvin Künzel          & questionaries@kuenzel-it.de \\
+\end{tabular}
+\end{table}
+\subsection{Begriffsdefinitionen}
+
+\subsection{Ergebnisermittlung}
+\subsubsection{Gewichtung}
+Die Fragen sind sind mit einer Gewichtung versehen. Sämtliche \emph{Kernfragen} haben das Gewicht \(w = 2\), wobei alle übrigen Fragen das Gewicht \(w = 1\) haben.  
+\subsection{Ergebniseinschätzung}
+
+
+\end{document}
