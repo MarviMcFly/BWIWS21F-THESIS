@@ -49,3 +49,7 @@
 .vscode/
 build/
 .timestamp
+
+# Misc
+main_strict.md
+*.docx
